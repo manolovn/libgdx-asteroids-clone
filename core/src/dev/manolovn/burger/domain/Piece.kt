@@ -7,7 +7,9 @@ data class Piece(
         var y: Float,
         var row: Int,
         var col: Int,
-        val texture: TextureRegion
+        var texture: TextureRegion,
+        var type: Int,
+        var match: Int = 0
 )
 
 fun Piece.swap(p: Piece) {

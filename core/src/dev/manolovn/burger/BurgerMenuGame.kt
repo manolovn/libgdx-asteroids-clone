@@ -22,9 +22,9 @@ class BurgerMenuGame : ApplicationAdapter(), InputProcessor {
     private lateinit var camera: OrthographicCamera
 
     private var board: Array<Array<Piece>> = arrayOf()
-    val xOffset = 48
-    val yOffset = 24
-    val cellSize = 54
+    private val xOffset = 48
+    private val yOffset = 24
+    private val cellSize = 54
 
     override fun create() {
         batch = SpriteBatch()
@@ -44,7 +44,8 @@ class BurgerMenuGame : ApplicationAdapter(), InputProcessor {
     private fun buildBoard() {
         board = Array(8) { i ->
             Array(8) { j ->
-                Piece(cellSize.toFloat() * i + xOffset, cellSize.toFloat() * j + yOffset, i, j, assets.gems[Random.nextInt(assets.gems.size)])
+                val kind = Random.nextInt(assets.gems.size)
+                Piece(cellSize.toFloat() * i + xOffset, cellSize.toFloat() * j + yOffset, i, j, assets.gems[kind], kind)
             }
         }
     }
@@ -52,20 +53,76 @@ class BurgerMenuGame : ApplicationAdapter(), InputProcessor {
     override fun render() {
         Gdx.gl.glClearColor(1f, 0f, 0f, 1f)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
-        batch.begin()
 
+        checkMatches()
+        updateGrid()
+
+        batch.begin()
         batch.draw(background, 0f, 0f)
         renderGems()
-
         batch.end()
         camera.update()
+    }
+
+    private fun updateGrid() {
+        for (i in range(0, 8)) {
+            for (j in range(0, 8)) {
+                if (board[i][j].match >= 1) {
+                    for (n in range(i, 1)) {
+                        if (board[i][j].match <= 0) {
+                            board[n][j].swap(board[i][j])
+                            val tmp = board[n][j]
+                            board[n][j] = board[i][j]
+                            board[i][j] = tmp
+                            break
+                        }
+                    }
+                }
+            }
+        }
+
+        for (j in range(0, 8)) {
+            var i = 7
+            var n = 0
+            while (i >= 0) {
+                if (board[i][j].match >= 1) {
+                    val kind = Random.nextInt(assets.gems.size)
+                    board[i][j].type = kind
+                    board[i][j].texture = assets.gems[kind]
+                    board[i][j].match = 0
+                    n++
+                }
+                i--
+            }
+        }
+    }
+
+    private fun checkMatches() {
+        for (i in range(0, 8)) {
+            for (j in range(0, 8)) {
+                if (i < 7 && board[i][j].type == board[i + 1][j].type) {
+                    if (i > 0 && board[i][j].type == board[i - 1][j].type) {
+                        for (n in -1..1) board[i + n][j].match++
+                    }
+                }
+                if (j < 7 && board[i][j].type == board[i][j + 1].type) {
+                    if (j > 0 && board[i][j].type == board[i][j - 1].type) {
+                        for (n in -1..1) board[i][j + n].match++
+                    }
+                }
+            }
+        }
     }
 
     private fun renderGems() {
         for (i in range(0, 8)) {
             for (j in range(0, 8)) {
                 board[i][j].let {
+                    if (board[i][j].match >= 1) {
+                        batch.setColor(batch.color.r, batch.color.g, batch.color.b, .3f)
+                    }
                     batch.draw(it.texture, it.x, it.y)
+                    batch.setColor(batch.color.r, batch.color.g, batch.color.b, 1f)
                 }
             }
         }
@@ -108,7 +165,6 @@ class BurgerMenuGame : ApplicationAdapter(), InputProcessor {
             board[x][y] = board[x0][y0]
             board[x0][y0] = tmp
         }
-        println("swaping $x $y <-> $x0 $y0")
         return false
     }
 
