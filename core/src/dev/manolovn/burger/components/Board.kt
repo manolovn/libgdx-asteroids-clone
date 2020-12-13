@@ -1,12 +1,13 @@
-package dev.manolovn.burger.domain
+package dev.manolovn.burger.components
 
+import com.artemis.Component
 import dev.manolovn.burger.util.Assets
 import java.util.stream.IntStream.range
 import kotlin.random.Random
 
 class Board(
         private val assets: Assets
-) {
+): Component() {
 
     var cells: Array<Array<Piece>> = arrayOf()
 
