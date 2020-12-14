@@ -11,8 +11,6 @@ import dev.manolovn.burger.components.*
 @All(Renderable::class)
 class RenderingSystem(private val game: BurgerMenuGame): EntitySystem() {
 
-    private lateinit var board: Board
-
     private lateinit var spriteMapper: ComponentMapper<Sprite>
     private lateinit var posMapper: ComponentMapper<Pos>
     private lateinit var matchMapper: ComponentMapper<Matcheable>
