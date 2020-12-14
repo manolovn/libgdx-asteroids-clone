@@ -1,17 +1,11 @@
 package dev.manolovn.burger.components
 
-import com.artemis.Component
-import com.badlogic.gdx.graphics.g2d.TextureRegion
-
 class Piece(
         var x: Float = 0f,
         var y: Float = 0f,
         var row: Int = 0,
-        var col: Int = 0,
-        var texture: TextureRegion? = null,
-        var type: Int = 0,
-        var match: Int = 0
-        ) : Component()
+        var col: Int = 0
+)
 
 fun Piece.swap(p: Piece) {
     val tmp = this.col

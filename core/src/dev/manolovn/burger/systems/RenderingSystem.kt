@@ -13,7 +13,6 @@ class RenderingSystem(private val game: BurgerMenuGame): EntitySystem() {
 
     private lateinit var spriteMapper: ComponentMapper<Sprite>
     private lateinit var posMapper: ComponentMapper<Pos>
-    private lateinit var matchMapper: ComponentMapper<Matcheable>
 
     override fun initialize() {
         super.initialize()
@@ -30,12 +29,6 @@ class RenderingSystem(private val game: BurgerMenuGame): EntitySystem() {
         entities.forEach {
             val sprite = spriteMapper[it]
             val pos = posMapper[it]
-            val match = matchMapper[it]
-            if (match.match >= 1) {
-                game.batch.setColor(game.batch.color.r, game.batch.color.g, game.batch.color.b, .3f)
-            } else {
-                game.batch.setColor(game.batch.color.r, game.batch.color.g, game.batch.color.b, 1f)
-            }
             game.batch.draw(sprite.texture, pos.x, pos.y)
         }
     }
