@@ -6,8 +6,7 @@ import com.artemis.annotations.All
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.GL20
 import dev.manolovn.burger.BurgerMenuGame
-import dev.manolovn.burger.components.Board
-import dev.manolovn.burger.components.Renderable
+import dev.manolovn.burger.components.*
 import java.util.stream.IntStream
 
 @All(Renderable::class)
@@ -15,7 +14,8 @@ class RenderingSystem(private val game: BurgerMenuGame): EntitySystem() {
 
     private lateinit var board: Board
 
-    protected var mRenderer: ComponentMapper<Renderable>? = null
+    private lateinit var mRenderer: ComponentMapper<Sprite>
+    private lateinit var posMapper: ComponentMapper<Pos>
 
     override fun initialize() {
         super.initialize()
@@ -29,9 +29,11 @@ class RenderingSystem(private val game: BurgerMenuGame): EntitySystem() {
     }
 
     override fun processSystem() {
-        //game.batch.draw(game.assets.bg, 0f, 0f)
-
-        //renderGems()
+        entities.forEach {
+            val sprite = mRenderer[it]
+            val pos = posMapper[it]
+            game.batch.draw(sprite.texture, pos.x, pos.y)
+        }
     }
 
     override fun end() {

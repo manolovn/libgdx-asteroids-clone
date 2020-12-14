@@ -9,7 +9,6 @@ import com.badlogic.gdx.Screen
 import dev.manolovn.burger.BurgerMenuGame
 import dev.manolovn.burger.systems.*
 import net.mostlyoriginal.api.plugin.extendedcomponentmapper.ExtendedComponentMapperPlugin
-import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem
 import net.mostlyoriginal.plugin.ProfilerPlugin
 
 class InGameScreen(
@@ -34,7 +33,6 @@ class InGameScreen(
                         // input handling
                         MouseSystem(),
                         // rendering
-                        RenderBatchingSystem(),
                         CameraSystem(game),
                         RenderingSystem(game),
                 )

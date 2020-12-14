@@ -3,10 +3,9 @@ package dev.manolovn.burger.systems
 import com.artemis.annotations.Wire
 import com.artemis.utils.EntityBuilder
 import dev.manolovn.burger.BurgerMenuGame
-import dev.manolovn.burger.components.Pos
-import net.mostlyoriginal.api.component.graphics.Render
-import net.mostlyoriginal.api.component.graphics.SpriteAsset
+import dev.manolovn.burger.components.*
 import net.mostlyoriginal.api.system.core.PassiveSystem
+import kotlin.random.Random
 
 @Wire
 class BoardSpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
@@ -15,19 +14,36 @@ class BoardSpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
         super.initialize()
 
         initBackground()
+        initGems()
     }
 
     private fun initBackground() {
-        val spriteAsset = SpriteAsset()
-        spriteAsset.asset = game.assets.bg
         EntityBuilder(world)
                 .with(
-                        Pos(0, 0)
+                        Pos(0f, 0f),
+                        Renderable(1),
+                        Sprite(game.assets.bg)
                 )
                 .build()
-                .edit()
-                .add(
-                        Render(100)
+    }
+
+    private fun initGems() {
+        Array(Board.COLS) { i ->
+            Array(Board.ROWS) { j ->
+                val kind = Random.nextInt(game.assets.gems.size)
+                buildGemEntity(i, j, kind)
+            }
+        }
+    }
+
+    private fun buildGemEntity(i: Int, j: Int, kind: Int) {
+        EntityBuilder(world)
+                .with(
+                        Pos(Board.CELL_SIZE.toFloat() * i + Board.X_OFFSET, Board.CELL_SIZE.toFloat() * j + Board.Y_OFFSET),
+                        Renderable(2),
+                        Matcheable(i, j, kind, 0),
+                        Sprite(game.assets.gems[kind])
                 )
+                .build()
     }
 }
