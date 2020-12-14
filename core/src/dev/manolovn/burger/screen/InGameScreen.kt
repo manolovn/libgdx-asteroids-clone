@@ -5,12 +5,11 @@ import com.artemis.WorldConfigurationBuilder
 import com.artemis.link.EntityLinkManager
 import com.artemis.managers.GroupManager
 import com.artemis.managers.TagManager
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.Screen
 import dev.manolovn.burger.BurgerMenuGame
-import dev.manolovn.burger.components.Board
 import dev.manolovn.burger.systems.*
+import net.mostlyoriginal.api.plugin.extendedcomponentmapper.ExtendedComponentMapperPlugin
+import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem
 import net.mostlyoriginal.plugin.ProfilerPlugin
 
 class InGameScreen(
@@ -19,23 +18,23 @@ class InGameScreen(
 
     private lateinit var world: World
 
-    private var board: Board = Board(game.assets)
-
     override fun show() {
-
         world = World(WorldConfigurationBuilder()
                 .dependsOn(
                         EntityLinkManager::class.java,
-                        ProfilerPlugin::class.java
+                        ProfilerPlugin::class.java,
+                        ExtendedComponentMapperPlugin::class.java
                 )
                 .with(
                         TagManager(),
                         GroupManager(),
+                        BoardSpawnerSystem(game),
                         // in game logic
                         MatchingSystem(),
                         // input handling
                         MouseSystem(),
                         // rendering
+                        RenderBatchingSystem(),
                         CameraSystem(game),
                         RenderingSystem(game),
                 )

@@ -4,15 +4,14 @@ import com.artemis.Component
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 
 class Piece(
-        var x: Float,
-        var y: Float,
-        var row: Int,
-        var col: Int,
-        var texture: TextureRegion,
-        var type: Int,
+        var x: Float = 0f,
+        var y: Float = 0f,
+        var row: Int = 0,
+        var col: Int = 0,
+        var texture: TextureRegion? = null,
+        var type: Int = 0,
         var match: Int = 0
-        ) : Component() {
-}
+        ) : Component()
 
 fun Piece.swap(p: Piece) {
     val tmp = this.col

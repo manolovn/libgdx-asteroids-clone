@@ -30,8 +30,8 @@ allprojects {
         roboVMVersion = '2.3.11'
         box2DLightsVersion = '1.5'
         aiVersion = '1.8.2'
-        artemisVersion = '2.2.0'
-        artemisContribVersion = '2.4.0'
+        artemisVersion = '2.3.0'
+        artemisContribVersion = '2.5.0'
     }
 
     repositories {

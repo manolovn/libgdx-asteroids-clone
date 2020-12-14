@@ -1,18 +1,33 @@
 package dev.manolovn.burger.systems
 
-import com.artemis.Aspect
-import com.artemis.Entity
 import com.artemis.annotations.Wire
-import com.artemis.systems.EntityProcessingSystem
-import dev.manolovn.burger.components.Board
-import dev.manolovn.burger.components.Piece
+import com.artemis.utils.EntityBuilder
+import dev.manolovn.burger.BurgerMenuGame
+import dev.manolovn.burger.components.Pos
+import net.mostlyoriginal.api.component.graphics.Render
+import net.mostlyoriginal.api.component.graphics.SpriteAsset
+import net.mostlyoriginal.api.system.core.PassiveSystem
 
 @Wire
-class BoardSpawnerSystem : EntityProcessingSystem(
-        Aspect.all(Piece::class.java, Board::class.java)
-) {
+class BoardSpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
 
-    override fun process(e: Entity?) {
+    override fun initialize() {
+        super.initialize()
 
+        initBackground()
+    }
+
+    private fun initBackground() {
+        val spriteAsset = SpriteAsset()
+        spriteAsset.asset = game.assets.bg
+        EntityBuilder(world)
+                .with(
+                        Pos(0, 0)
+                )
+                .build()
+                .edit()
+                .add(
+                        Render(100)
+                )
     }
 }
