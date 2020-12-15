@@ -22,7 +22,8 @@ class BoardSpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
                 .with(
                         Pos(0f, 0f),
                         Renderable(1),
-                        Sprite(game.assets.bg)
+                        Sprite(game.assets.bg),
+                        Color(game.assets.bg.color)
                 )
                 .build()
     }
@@ -42,7 +43,8 @@ class BoardSpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
                         Pos(Board.CELL_SIZE.toFloat() * i + Board.X_OFFSET, Board.CELL_SIZE.toFloat() * j + Board.Y_OFFSET),
                         Renderable(2),
                         Matcheable(i, j, kind, 0),
-                        Sprite(game.assets.gems[kind])
+                        Sprite(game.assets.gems[kind]),
+                        Color(game.assets.gems[kind].color)
                 )
                 .build()
     }

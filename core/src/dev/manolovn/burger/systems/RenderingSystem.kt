@@ -13,6 +13,7 @@ class RenderingSystem(private val game: BurgerMenuGame): EntitySystem() {
 
     private lateinit var spriteMapper: ComponentMapper<Sprite>
     private lateinit var posMapper: ComponentMapper<Pos>
+    private lateinit var colorMapper: ComponentMapper<Color>
 
     override fun initialize() {
         super.initialize()
@@ -29,6 +30,8 @@ class RenderingSystem(private val game: BurgerMenuGame): EntitySystem() {
         entities.forEach {
             val sprite = spriteMapper[it]
             val pos = posMapper[it]
+            val c = colorMapper[it]
+            game.batch.color = c.color
             game.batch.draw(sprite.texture, pos.x, pos.y)
         }
     }

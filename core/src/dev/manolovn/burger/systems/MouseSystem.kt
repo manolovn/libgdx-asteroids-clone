@@ -8,8 +8,6 @@ import kotlin.math.abs
 
 class MouseSystem : BaseSystem(), InputProcessor {
 
-    private lateinit var board: Board
-
     override fun initialize() {
         super.initialize()
         Gdx.input.inputProcessor = this
@@ -40,7 +38,7 @@ class MouseSystem : BaseSystem(), InputProcessor {
         x = (screenX - Board.X_OFFSET) / Board.CELL_SIZE
         y = (screenY - Board.Y_OFFSET) / Board.CELL_SIZE
         if (abs(x - x0) + abs(y - y0) == 1) {
-            board.swap(x, y, x0, y0)
+            //board.swap(x, y, x0, y0)
         }
         return false
     }

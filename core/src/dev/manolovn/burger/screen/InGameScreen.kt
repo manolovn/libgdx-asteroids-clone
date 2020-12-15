@@ -34,7 +34,7 @@ class InGameScreen(
                         MouseSystem(),
                         // rendering
                         CameraSystem(game),
-                        RenderingSystem(game),
+                        RenderingSystem(game)
                 )
                 .build())
     }
