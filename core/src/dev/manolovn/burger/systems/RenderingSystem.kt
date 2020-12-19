@@ -8,8 +8,42 @@ import com.badlogic.gdx.graphics.GL20
 import dev.manolovn.burger.BurgerMenuGame
 import dev.manolovn.burger.components.*
 
-@All(Renderable::class)
+@All(Renderable::class, Sprite::class, Pos::class, Color::class)
 class RenderingSystem(private val game: BurgerMenuGame): EntitySystem() {
+
+    /*
+
+    EntityBuilder.with(
+    Sprite
+    Pos
+    Acceleration
+    Color
+    Player
+    Drift
+    ).create();
+
+    EntityBuilder.with(
+    Sprite
+    Pos
+    Acceleration
+    Color
+    Enemy
+    Drift
+    ).create();
+
+    EnemySpawner()
+
+    RenderSystem(Sprite, Pos, Color)
+    DrivingSystem(Pos, Acceleration)
+    EnemySystem(Player, Enemy)
+        processSystem() {
+            entities.forEach {
+                player = playerMapper[id]
+                player
+            }
+        }
+
+     */
 
     private lateinit var spriteMapper: ComponentMapper<Sprite>
     private lateinit var posMapper: ComponentMapper<Pos>

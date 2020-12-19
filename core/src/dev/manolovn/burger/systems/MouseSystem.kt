@@ -1,12 +1,19 @@
 package dev.manolovn.burger.systems
 
 import com.artemis.BaseSystem
+import com.artemis.ComponentMapper
+import com.artemis.annotations.All
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputProcessor
 import dev.manolovn.burger.components.Board
+import dev.manolovn.burger.components.Draggable
+import dev.manolovn.burger.components.Pos
 import kotlin.math.abs
 
+@All(Draggable::class, Pos::class)
 class MouseSystem : BaseSystem(), InputProcessor {
+
+    private lateinit var draggableMapper: ComponentMapper<Draggable>
 
     override fun initialize() {
         super.initialize()
