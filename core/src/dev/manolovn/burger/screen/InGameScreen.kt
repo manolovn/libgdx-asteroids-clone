@@ -10,33 +10,37 @@ import dev.manolovn.burger.BurgerMenuGame
 import dev.manolovn.burger.systems.*
 import net.mostlyoriginal.api.plugin.extendedcomponentmapper.ExtendedComponentMapperPlugin
 import net.mostlyoriginal.plugin.ProfilerPlugin
+import net.namekdev.entity_tracker.EntityTracker
 
 class InGameScreen(
-        private val game: BurgerMenuGame
+    private val game: BurgerMenuGame
 ) : Screen {
 
     private lateinit var world: World
 
     override fun show() {
-        world = World(WorldConfigurationBuilder()
+        world = World(
+            WorldConfigurationBuilder()
                 .dependsOn(
-                        EntityLinkManager::class.java,
-                        ProfilerPlugin::class.java,
-                        ExtendedComponentMapperPlugin::class.java
+                    EntityLinkManager::class.java,
+                    ProfilerPlugin::class.java,
+                    ExtendedComponentMapperPlugin::class.java
                 )
                 .with(
-                        TagManager(),
-                        GroupManager(),
-                        BoardSpawnerSystem(game),
-                        // in game logic
-                        MatchingSystem(),
-                        // input handling
-                        MouseSystem(),
-                        // rendering
-                        CameraSystem(game),
-                        RenderingSystem(game)
+                    TagManager(),
+                    GroupManager(),
+                    BoardSpawnerSystem(game),
+                    // in game logic
+                    //MatchingSystem(),
+                    // input handling
+                    MouseSystem(),
+                    KeyboardSystem(),
+                    // rendering
+                    CameraSystem(game),
+                    RenderingSystem(game),
                 )
-                .build())
+                .build()
+        )
     }
 
     override fun render(delta: Float) {

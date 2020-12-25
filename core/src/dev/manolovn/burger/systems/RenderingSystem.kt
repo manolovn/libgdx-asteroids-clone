@@ -5,49 +5,18 @@ import com.artemis.EntitySystem
 import com.artemis.annotations.All
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.GL20
+import com.badlogic.gdx.math.MathUtils
 import dev.manolovn.burger.BurgerMenuGame
 import dev.manolovn.burger.components.*
 
-@All(Renderable::class, Sprite::class, Pos::class, Color::class)
+@All(Renderable::class, Sprite::class, Pos::class, Color::class, Angle::class)
 class RenderingSystem(private val game: BurgerMenuGame): EntitySystem() {
-
-    /*
-
-    EntityBuilder.with(
-    Sprite
-    Pos
-    Acceleration
-    Color
-    Player
-    Drift
-    ).create();
-
-    EntityBuilder.with(
-    Sprite
-    Pos
-    Acceleration
-    Color
-    Enemy
-    Drift
-    ).create();
-
-    EnemySpawner()
-
-    RenderSystem(Sprite, Pos, Color)
-    DrivingSystem(Pos, Acceleration)
-    EnemySystem(Player, Enemy)
-        processSystem() {
-            entities.forEach {
-                player = playerMapper[id]
-                player
-            }
-        }
-
-     */
 
     private lateinit var spriteMapper: ComponentMapper<Sprite>
     private lateinit var posMapper: ComponentMapper<Pos>
     private lateinit var colorMapper: ComponentMapper<Color>
+    private lateinit var angleMapper: ComponentMapper<Angle>
+    private lateinit var scaleMapper: ComponentMapper<Scale>
 
     override fun initialize() {
         super.initialize()
@@ -65,8 +34,14 @@ class RenderingSystem(private val game: BurgerMenuGame): EntitySystem() {
             val sprite = spriteMapper[it]
             val pos = posMapper[it]
             val c = colorMapper[it]
+            val rot = angleMapper[it]
+            val scale = scaleMapper[it]
             game.batch.color = c.color
-            game.batch.draw(sprite.texture, pos.x, pos.y)
+            val degs: Float = rot.value * MathUtils.radiansToDegrees
+            val w = sprite.texture!!.width
+            val h = sprite.texture!!.height
+            game.batch.draw(sprite.texture, pos.x, pos.y, w/2, h/2, w,
+            h, scale.x, scale.y, degs)
         }
     }
 

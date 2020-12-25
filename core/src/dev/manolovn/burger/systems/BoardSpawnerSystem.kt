@@ -14,18 +14,35 @@ class BoardSpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
         super.initialize()
 
         initBackground()
-        initGems()
+        initSpaceship()
+        //initGems()
     }
 
     private fun initBackground() {
         EntityBuilder(world)
-                .with(
-                        Pos(0f, 0f),
-                        Renderable(1),
-                        Sprite(game.assets.bg),
-                        Color(game.assets.bg.color)
-                )
-                .build()
+            .with(
+                Pos(0f, 0f),
+                Angle(0f),
+                Scale(),
+                Renderable(1),
+                Sprite(game.assets.bg),
+                Color(game.assets.bg.color)
+            )
+            .build()
+    }
+
+    private fun initSpaceship() {
+        EntityBuilder(world)
+            .with(
+                Pos(370f, 240f),
+                Angle(0f),
+                Scale(0.3f, 0.3f),
+                Renderable(2),
+                Control(),
+                Sprite(game.assets.spaceship),
+                Color(game.assets.bg.color)
+            )
+            .build()
     }
 
     private fun initGems() {
@@ -39,13 +56,13 @@ class BoardSpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
 
     private fun buildGemEntity(i: Int, j: Int, kind: Int) {
         EntityBuilder(world)
-                .with(
-                        Pos(Board.CELL_SIZE.toFloat() * i + Board.X_OFFSET, Board.CELL_SIZE.toFloat() * j + Board.Y_OFFSET),
-                        Renderable(2),
-                        Matcheable(i, j, kind, 0),
-                        Sprite(game.assets.gems[kind]),
-                        Color(game.assets.gems[kind].color)
-                )
-                .build()
+            .with(
+                Pos(Board.CELL_SIZE.toFloat() * i + Board.X_OFFSET, Board.CELL_SIZE.toFloat() * j + Board.Y_OFFSET),
+                Renderable(2),
+                Matcheable(i, j, kind, 0),
+                Sprite(game.assets.gems[kind]),
+                Color(game.assets.gems[kind].color)
+            )
+            .build()
     }
 }
