@@ -10,7 +10,6 @@ import dev.manolovn.burger.BurgerMenuGame
 import dev.manolovn.burger.systems.*
 import net.mostlyoriginal.api.plugin.extendedcomponentmapper.ExtendedComponentMapperPlugin
 import net.mostlyoriginal.plugin.ProfilerPlugin
-import net.namekdev.entity_tracker.EntityTracker
 
 class InGameScreen(
     private val game: BurgerMenuGame
@@ -29,9 +28,10 @@ class InGameScreen(
                 .with(
                     TagManager(),
                     GroupManager(),
-                    BoardSpawnerSystem(game),
+                    SpawnerSystem(game),
                     // in game logic
-                    //MatchingSystem(),
+                    BulletSystem(game),
+                    PhysicsSystem(game),
                     // input handling
                     MouseSystem(),
                     KeyboardSystem(),

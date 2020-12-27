@@ -2,13 +2,16 @@ package dev.manolovn.burger.systems
 
 import com.artemis.annotations.Wire
 import com.artemis.utils.EntityBuilder
+import com.badlogic.gdx.math.MathUtils
 import dev.manolovn.burger.BurgerMenuGame
+import dev.manolovn.burger.BurgerMenuGame.Companion.H
+import dev.manolovn.burger.BurgerMenuGame.Companion.W
 import dev.manolovn.burger.components.*
 import net.mostlyoriginal.api.system.core.PassiveSystem
 import kotlin.random.Random
 
 @Wire
-class BoardSpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
+class SpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
 
     override fun initialize() {
         super.initialize()
@@ -21,7 +24,7 @@ class BoardSpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
     private fun initBackground() {
         EntityBuilder(world)
             .with(
-                Pos(0f, 0f),
+                Pos(-W/2f, -H/2f),
                 Angle(0f),
                 Scale(),
                 Renderable(1),
@@ -34,9 +37,10 @@ class BoardSpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
     private fun initSpaceship() {
         EntityBuilder(world)
             .with(
-                Pos(370f, 240f),
-                Angle(0f),
-                Scale(0.3f, 0.3f),
+                Ship(),
+                Pos(),
+                Angle(MathUtils.PI),
+                Scale(),
                 Renderable(2),
                 Control(),
                 Sprite(game.assets.spaceship),

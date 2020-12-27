@@ -37,7 +37,7 @@ class RenderingSystem(private val game: BurgerMenuGame): EntitySystem() {
             val rot = angleMapper[it]
             val scale = scaleMapper[it]
             game.batch.color = c.color
-            val degs: Float = rot.value * MathUtils.radiansToDegrees
+            val degs: Float = rot.value * MathUtils.radDeg
             val w = sprite.texture!!.width
             val h = sprite.texture!!.height
             game.batch.draw(sprite.texture, pos.x, pos.y, w/2, h/2, w,

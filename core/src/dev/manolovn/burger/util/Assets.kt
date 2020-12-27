@@ -13,6 +13,7 @@ class Assets {
     lateinit var gems: MutableList<Sprite>
     lateinit var bg: Sprite
     lateinit var spaceship: Sprite
+    lateinit var bullet: Sprite
 
     private fun loadTexture(path: String): Sprite = Sprite(Texture(Gdx.files.internal(path)))
 
@@ -20,6 +21,7 @@ class Assets {
         bg = loadTexture("space-bg.jpg")
         gemsTexture = loadTexture("gems.png")
         spaceship = loadTexture("spaceship.png")
+        bullet = loadTexture("bullet.png")
 
         gems = mutableListOf()
         for (i in range(0, 6)) {
