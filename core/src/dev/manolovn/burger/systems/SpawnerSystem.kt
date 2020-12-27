@@ -3,6 +3,7 @@ package dev.manolovn.burger.systems
 import com.artemis.annotations.Wire
 import com.artemis.utils.EntityBuilder
 import com.badlogic.gdx.math.MathUtils
+import com.badlogic.gdx.math.Vector2
 import dev.manolovn.burger.BurgerMenuGame
 import dev.manolovn.burger.BurgerMenuGame.Companion.H
 import dev.manolovn.burger.BurgerMenuGame.Companion.W
@@ -18,7 +19,7 @@ class SpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
 
         initBackground()
         initSpaceship()
-        //initGems()
+        initAsteroids()
     }
 
     private fun initBackground() {
@@ -49,22 +50,24 @@ class SpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
             .build()
     }
 
-    private fun initGems() {
-        Array(Board.COLS) { i ->
-            Array(Board.ROWS) { j ->
-                val kind = Random.nextInt(game.assets.gems.size)
-                buildGemEntity(i, j, kind)
-            }
+    private fun initAsteroids() {
+        for (i in 0..8) {
+            val kind = Random.nextInt(game.assets.gems.size)
+            buildAsteroidEntity(kind)
         }
     }
 
-    private fun buildGemEntity(i: Int, j: Int, kind: Int) {
+    private fun buildAsteroidEntity(kind: Int) {
+        val rand = Random
         EntityBuilder(world)
             .with(
-                Pos(Board.CELL_SIZE.toFloat() * i + Board.X_OFFSET, Board.CELL_SIZE.toFloat() * j + Board.Y_OFFSET),
+                Pos(W * 0.6f * (rand.nextFloat() - 0.5f),
+                    H * (rand.nextFloat() - 0.5f)),
                 Renderable(2),
-                Matcheable(i, j, kind, 0),
+                Physics(Vector2(200f, 0f).rotateRad(MathUtils.PI2 * rand.nextFloat())),
+                Angle(MathUtils.PI2 * rand.nextFloat()),
                 Sprite(game.assets.gems[kind]),
+                Scale(),
                 Color(game.assets.gems[kind].color)
             )
             .build()

@@ -31,7 +31,7 @@ class InGameScreen(
                     SpawnerSystem(game),
                     // in game logic
                     BulletSystem(game),
-                    PhysicsSystem(game),
+                    PhysicsSystem(),
                     // input handling
                     MouseSystem(),
                     KeyboardSystem(),
