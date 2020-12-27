@@ -28,9 +28,9 @@ class InGameScreen(
                 .with(
                     TagManager(),
                     GroupManager(),
-                    SpawnerSystem(game),
+                    SpawnerSystem(game.assets),
                     // in game logic
-                    BulletSystem(game),
+                    BulletSystem(game.assets),
                     PhysicsSystem(),
                     CollisionSystem(),
                     // input handling
@@ -38,7 +38,7 @@ class InGameScreen(
                     KeyboardSystem(),
                     // rendering
                     CameraSystem(game),
-                    RenderingSystem(game),
+                    RenderingSystem(game.batch),
                 )
                 .build()
         )

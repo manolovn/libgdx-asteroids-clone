@@ -4,15 +4,15 @@ import com.artemis.annotations.Wire
 import com.artemis.utils.EntityBuilder
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
-import dev.manolovn.burger.BurgerMenuGame
 import dev.manolovn.burger.BurgerMenuGame.Companion.H
 import dev.manolovn.burger.BurgerMenuGame.Companion.W
 import dev.manolovn.burger.components.*
+import dev.manolovn.burger.util.Assets
 import net.mostlyoriginal.api.system.core.PassiveSystem
 import kotlin.random.Random
 
 @Wire
-class SpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
+class SpawnerSystem(private val assets: Assets) : PassiveSystem() {
 
     override fun initialize() {
         super.initialize()
@@ -29,8 +29,8 @@ class SpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
                 Angle(0f),
                 Scale(),
                 Renderable(1),
-                Sprite(game.assets.bg),
-                Color(game.assets.bg.color)
+                Sprite(assets.bg),
+                Color(),
             )
             .build()
     }
@@ -45,15 +45,15 @@ class SpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
                 Renderable(2),
                 Control(),
                 Collision(3f),
-                Sprite(game.assets.spaceship),
-                Color(game.assets.bg.color)
+                Sprite(assets.spaceship),
+                Color(),
             )
             .build()
     }
 
     private fun initAsteroids() {
         for (i in 0..3) {
-            val kind = Random.nextInt(game.assets.gems.size)
+            val kind = Random.nextInt(assets.gems.size)
             buildAsteroidEntity(kind)
         }
     }
@@ -67,10 +67,10 @@ class SpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
                 Renderable(2),
                 Physics(Vector2(200f, 0f).rotateRad(MathUtils.PI2 * rand.nextFloat())),
                 Angle(MathUtils.PI2 * rand.nextFloat()),
-                Sprite(game.assets.gems[kind]),
+                Sprite(assets.gems[kind]),
                 Scale(),
                 Collision(3f),
-                Color(game.assets.gems[kind].color)
+                Color(),
             )
             .build()
     }

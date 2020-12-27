@@ -7,11 +7,11 @@ import com.artemis.utils.EntityBuilder
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.math.Vector2
-import dev.manolovn.burger.BurgerMenuGame
 import dev.manolovn.burger.components.*
+import dev.manolovn.burger.util.Assets
 
 @All(Ship::class)
-class BulletSystem(private val game: BurgerMenuGame) : IteratingSystem() {
+class BulletSystem(private val assets: Assets) : IteratingSystem() {
 
     private lateinit var angleMapper: ComponentMapper<Angle>
     private lateinit var posMapper: ComponentMapper<Pos>
@@ -31,8 +31,8 @@ class BulletSystem(private val game: BurgerMenuGame) : IteratingSystem() {
                     Scale(),
                     Collision(1f),
                     Renderable(3),
-                    Sprite(game.assets.bullet),
-                    Color(game.assets.bg.color)
+                    Sprite(assets.bullet),
+                    Color(),
                 )
                 .build()
         }
