@@ -38,7 +38,7 @@ class SpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
         EntityBuilder(world)
             .with(
                 Ship(),
-                Pos(),
+                Pos(W/2, H/2),
                 Angle(MathUtils.PI),
                 Scale(),
                 Renderable(2),

@@ -13,7 +13,7 @@ class CameraSystem(private val game: BurgerMenuGame): EntitySystem() {
 
     override fun initialize() {
         super.initialize()
-        camera.position.set(graphics.width.toFloat() / 2f, graphics.height.toFloat() / 2f, 0f)
+        camera.setToOrtho(false, graphics.width.toFloat(), graphics.height.toFloat())
         game.batch.projectionMatrix = camera.combined
     }
 
