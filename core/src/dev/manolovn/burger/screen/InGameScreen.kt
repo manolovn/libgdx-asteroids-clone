@@ -32,6 +32,7 @@ class InGameScreen(
                     // in game logic
                     BulletSystem(game),
                     PhysicsSystem(),
+                    CollisionSystem(),
                     // input handling
                     MouseSystem(),
                     KeyboardSystem(),

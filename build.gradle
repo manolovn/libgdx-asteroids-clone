@@ -131,7 +131,8 @@ project(":core") {
         compile "net.onedaybeard.artemis:artemis-odb-serializer-json-libgdx:$artemisVersion"
 
         // Artemis entity tracker
-        compile "net.namekdev.entity_tracker:artemis-entity-tracker:0.3.0"
+        implementation "net.namekdev.entity_tracker:artemis-entity-tracker:0.3.0"
+        implementation 'net.namekdev.entity_tracker:artemis-entity-tracker-gui:0.3.0'
 
         // Artemis-odb bonus functionality (systems, events, components).
         compile "net.mostlyoriginal.artemis-odb:contrib-core:$artemisContribVersion"

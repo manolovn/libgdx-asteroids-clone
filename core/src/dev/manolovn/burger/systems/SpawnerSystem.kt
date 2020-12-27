@@ -44,6 +44,7 @@ class SpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
                 Scale(),
                 Renderable(2),
                 Control(),
+                Collision(3f),
                 Sprite(game.assets.spaceship),
                 Color(game.assets.bg.color)
             )
@@ -51,7 +52,7 @@ class SpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
     }
 
     private fun initAsteroids() {
-        for (i in 0..8) {
+        for (i in 0..3) {
             val kind = Random.nextInt(game.assets.gems.size)
             buildAsteroidEntity(kind)
         }
@@ -68,6 +69,7 @@ class SpawnerSystem(private val game: BurgerMenuGame) : PassiveSystem() {
                 Angle(MathUtils.PI2 * rand.nextFloat()),
                 Sprite(game.assets.gems[kind]),
                 Scale(),
+                Collision(3f),
                 Color(game.assets.gems[kind].color)
             )
             .build()
