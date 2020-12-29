@@ -29,7 +29,7 @@ class BulletSystem(private val assets: Assets) : IteratingSystem() {
                     Pos(pos.x, pos.y),
                     Angle(angle.value),
                     Scale(),
-                    Collision(1f),
+                    Collision(3f),
                     Renderable(3),
                     Sprite(assets.bullet),
                     Color(),

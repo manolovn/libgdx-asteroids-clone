@@ -52,7 +52,7 @@ class SpawnerSystem(private val assets: Assets) : PassiveSystem() {
     }
 
     private fun initAsteroids() {
-        for (i in 0..3) {
+        for (i in 0..10) {
             val kind = Random.nextInt(assets.gems.size)
             buildAsteroidEntity(kind)
         }

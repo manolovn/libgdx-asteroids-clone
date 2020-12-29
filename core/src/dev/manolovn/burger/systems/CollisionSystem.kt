@@ -33,8 +33,8 @@ class CollisionSystem : BaseEntitySystem() {
                             + (pos1.y - pos2.y).toDouble().pow(2.0)
                 )
                 if (d < r1 + r2) {
-                    colorMapper[id1].color = com.badlogic.gdx.graphics.Color.BLACK
-                    colorMapper[id2].color = com.badlogic.gdx.graphics.Color.BLACK
+                    colorMapper[id1].color = com.badlogic.gdx.graphics.Color.RED
+                    colorMapper[id2].color = com.badlogic.gdx.graphics.Color.RED
                 }
             }
         }
