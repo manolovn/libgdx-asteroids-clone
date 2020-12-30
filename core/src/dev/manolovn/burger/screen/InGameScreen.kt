@@ -14,10 +14,7 @@ import dev.manolovn.burger.systems.entity.BulletSystem
 import dev.manolovn.burger.systems.entity.SpawnerSystem
 import dev.manolovn.burger.systems.input.KeyboardSystem
 import dev.manolovn.burger.systems.input.MouseSystem
-import dev.manolovn.burger.systems.render.AnimRenderingSystem
-import dev.manolovn.burger.systems.render.CameraSystem
-import dev.manolovn.burger.systems.render.PhysicsSystem
-import dev.manolovn.burger.systems.render.RenderingSystem
+import dev.manolovn.burger.systems.render.*
 import net.mostlyoriginal.api.plugin.extendedcomponentmapper.ExtendedComponentMapperPlugin
 import net.mostlyoriginal.plugin.ProfilerPlugin
 
@@ -38,9 +35,10 @@ class InGameScreen(
                 .with(
                     TagManager(),
                     GroupManager(),
-                    SpawnerSystem(game.assets),
+                    AssetsSystem(),
+                    SpawnerSystem(),
                     // in game logic
-                    BulletSystem(game.assets),
+                    BulletSystem(),
                     PhysicsSystem(),
                     CollisionSystem(),
                     BulletCollisionSystem(),
@@ -48,9 +46,9 @@ class InGameScreen(
                     MouseSystem(),
                     KeyboardSystem(),
                     // rendering
-                    CameraSystem(game),
+                    CameraSystem(game.batch),
                     RenderingSystem(game.batch),
-                    AnimRenderingSystem(game.assets, game.batch),
+                    AnimRenderingSystem(game.batch),
                     CollisionDebugRenderSystem()
                 )
                 .build()

@@ -1,14 +1,15 @@
-package dev.manolovn.burger.util
+package dev.manolovn.burger.systems.render
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import net.mostlyoriginal.api.system.core.PassiveSystem
 import java.util.HashMap
 import java.util.stream.IntStream.range
 
-class Assets {
+class AssetsSystem : PassiveSystem() {
 
     private lateinit var gemsTexture: Sprite
 
@@ -23,7 +24,7 @@ class Assets {
     private fun loadSprite(path: String): Sprite = Sprite(Texture(Gdx.files.internal(path)))
     private fun loadTexture(path: String): Texture = Texture(Gdx.files.internal(path))
 
-    fun loadAll(): Assets {
+    override fun initialize() {
         bg = loadSprite("space-bg.jpg")
         gemsTexture = loadSprite("gems.png")
         spaceship = loadSprite("spaceship.png")
@@ -37,12 +38,9 @@ class Assets {
         for (i in range(0, 6)) {
             gems.add(Sprite(TextureRegion(gemsTexture, i * 48, 0, 54, 54)))
         }
-
-        return this
     }
 
-    private fun add(
-        id: String,
+    private fun add(id: String,
         x1: Int,
         y1: Int,
         w: Int,
@@ -62,7 +60,7 @@ class Assets {
         sprites[id] = Animation(frameDuration, *regions)
     }
 
-    fun dispose() {
+    override fun dispose() {
         sprites.clear()
     }
 }

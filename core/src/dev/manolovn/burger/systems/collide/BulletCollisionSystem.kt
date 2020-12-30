@@ -10,7 +10,8 @@ import com.artemis.utils.EntityBuilder
 import dev.manolovn.burger.components.Anim
 import dev.manolovn.burger.components.Collision
 import dev.manolovn.burger.components.Pos
-import dev.manolovn.burger.systems.collide.CollisionSystem
+import dev.manolovn.burger.systems.entity.SpawnerSystem.Group.BULLET
+import dev.manolovn.burger.systems.entity.SpawnerSystem.Tag.SHIP
 
 @All(Collision::class)
 class BulletCollisionSystem : EntityProcessingSystem() {
@@ -22,11 +23,11 @@ class BulletCollisionSystem : EntityProcessingSystem() {
     private lateinit var posMapper: ComponentMapper<Pos>
 
     override fun process(e: Entity) {
-        val ship = tagManager.getEntity("ship")
+        val ship = tagManager.getEntity(SHIP)
         if (ship.id == e.id) return
-        if (groupManager.isInGroup(e, "bullet")) return
+        if (groupManager.isInGroup(e, BULLET)) return
 
-        val bullets = groupManager.getEntities("bullet")
+        val bullets = groupManager.getEntities(BULLET)
         for (bullet in bullets) {
             if (collisionSystem.collides(bullet, e)) {
                 bullet.deleteFromWorld()

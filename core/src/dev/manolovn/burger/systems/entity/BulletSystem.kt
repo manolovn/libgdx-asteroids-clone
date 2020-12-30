@@ -10,11 +10,12 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.math.Vector2
 import dev.manolovn.burger.components.*
 import dev.manolovn.burger.systems.entity.SpawnerSystem.Group.BULLET
-import dev.manolovn.burger.util.Assets
+import dev.manolovn.burger.systems.render.AssetsSystem
 
 @All(Ship::class)
-class BulletSystem(private val assets: Assets) : IteratingSystem() {
+class BulletSystem : IteratingSystem() {
 
+    private lateinit var assets: AssetsSystem
     private lateinit var groupManager: GroupManager
 
     private lateinit var angleMapper: ComponentMapper<Angle>

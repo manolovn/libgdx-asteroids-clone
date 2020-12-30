@@ -10,13 +10,14 @@ import dev.manolovn.burger.BurgerMenuGame.Companion.W
 import dev.manolovn.burger.components.*
 import dev.manolovn.burger.systems.entity.SpawnerSystem.Tag.ASTEROID
 import dev.manolovn.burger.systems.entity.SpawnerSystem.Tag.SHIP
-import dev.manolovn.burger.util.Assets
+import dev.manolovn.burger.systems.render.AssetsSystem
 import net.mostlyoriginal.api.system.core.PassiveSystem
 import kotlin.random.Random
 
 @Wire
-class SpawnerSystem(private val assets: Assets) : PassiveSystem() {
+class SpawnerSystem : PassiveSystem() {
 
+    private lateinit var assets: AssetsSystem
     private lateinit var tagManager: TagManager
 
     override fun initialize() {

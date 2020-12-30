@@ -8,14 +8,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import dev.manolovn.burger.components.Anim
 import dev.manolovn.burger.components.Pos
-import dev.manolovn.burger.util.Assets
 
 @All(Anim::class)
 class AnimRenderingSystem(
-    private val assets: Assets,
     private val batch: SpriteBatch
 ) : EntitySystem() {
 
+    private lateinit var assets: AssetsSystem
     private lateinit var animMapper: ComponentMapper<Anim>
     private lateinit var posMapper: ComponentMapper<Pos>
 
