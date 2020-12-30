@@ -1,6 +1,7 @@
 package dev.manolovn.burger.systems
 
 import com.artemis.annotations.Wire
+import com.artemis.managers.TagManager
 import com.artemis.utils.EntityBuilder
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
@@ -13,6 +14,8 @@ import kotlin.random.Random
 
 @Wire
 class SpawnerSystem(private val assets: Assets) : PassiveSystem() {
+
+    private lateinit var tagManager: TagManager
 
     override fun initialize() {
         super.initialize()
@@ -36,7 +39,7 @@ class SpawnerSystem(private val assets: Assets) : PassiveSystem() {
     }
 
     private fun initSpaceship() {
-        EntityBuilder(world)
+        val ship = EntityBuilder(world)
             .with(
                 Ship(),
                 Pos(W/2, H/2),
@@ -49,6 +52,7 @@ class SpawnerSystem(private val assets: Assets) : PassiveSystem() {
                 Color(),
             )
             .build()
+        tagManager.register("ship", ship)
     }
 
     private fun initAsteroids() {
@@ -60,7 +64,7 @@ class SpawnerSystem(private val assets: Assets) : PassiveSystem() {
 
     private fun buildAsteroidEntity(kind: Int) {
         val rand = Random
-        EntityBuilder(world)
+        val asteroid = EntityBuilder(world)
             .with(
                 Pos(W * 0.6f * (rand.nextFloat() - 0.5f),
                     H * (rand.nextFloat() - 0.5f)),
@@ -73,5 +77,6 @@ class SpawnerSystem(private val assets: Assets) : PassiveSystem() {
                 Color(),
             )
             .build()
+        tagManager.register("asteroid", asteroid)
     }
 }

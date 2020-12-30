@@ -33,6 +33,7 @@ class InGameScreen(
                     BulletSystem(game.assets),
                     PhysicsSystem(),
                     CollisionSystem(),
+                    BulletCollisionSystem(),
                     // input handling
                     MouseSystem(),
                     KeyboardSystem(),
