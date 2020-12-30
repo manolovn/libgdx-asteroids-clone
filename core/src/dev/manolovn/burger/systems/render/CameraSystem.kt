@@ -1,4 +1,4 @@
-package dev.manolovn.burger.systems
+package dev.manolovn.burger.systems.render
 
 import com.artemis.EntitySystem
 import com.artemis.annotations.All

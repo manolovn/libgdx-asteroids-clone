@@ -1,4 +1,4 @@
-package dev.manolovn.burger.systems
+package dev.manolovn.burger.systems.collide
 
 import com.artemis.ComponentMapper
 import com.artemis.Entity
@@ -10,6 +10,7 @@ import com.artemis.utils.EntityBuilder
 import dev.manolovn.burger.components.Anim
 import dev.manolovn.burger.components.Collision
 import dev.manolovn.burger.components.Pos
+import dev.manolovn.burger.systems.collide.CollisionSystem
 
 @All(Collision::class)
 class BulletCollisionSystem : EntityProcessingSystem() {

@@ -1,4 +1,4 @@
-package dev.manolovn.burger.systems
+package dev.manolovn.burger.systems.input
 
 import com.artemis.BaseSystem
 import com.artemis.ComponentMapper

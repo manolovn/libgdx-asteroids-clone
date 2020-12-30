@@ -1,4 +1,4 @@
-package dev.manolovn.burger.systems
+package dev.manolovn.burger.systems.entity
 
 import com.artemis.ComponentMapper
 import com.artemis.annotations.All
@@ -9,6 +9,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.math.Vector2
 import dev.manolovn.burger.components.*
+import dev.manolovn.burger.systems.entity.SpawnerSystem.Group.BULLET
 import dev.manolovn.burger.util.Assets
 
 @All(Ship::class)
@@ -38,7 +39,7 @@ class BulletSystem(private val assets: Assets) : IteratingSystem() {
                     Color(),
                 )
                 .build()
-            groupManager.add(bullet,"bullet")
+            groupManager.add(bullet, BULLET)
         }
     }
 }

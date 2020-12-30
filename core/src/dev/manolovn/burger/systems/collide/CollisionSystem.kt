@@ -1,4 +1,4 @@
-package dev.manolovn.burger.systems
+package dev.manolovn.burger.systems.collide
 
 import com.artemis.ComponentMapper
 import com.artemis.Entity

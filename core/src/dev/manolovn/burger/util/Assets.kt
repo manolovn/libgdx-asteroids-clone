@@ -42,7 +42,7 @@ class Assets {
     }
 
     private fun add(
-        identifier: String,
+        id: String,
         x1: Int,
         y1: Int,
         w: Int,
@@ -59,10 +59,10 @@ class Assets {
                 regions[count++] = TextureRegion(texture, x1 + w * x, y1 + h * y, w, h)
             }
         }
-        sprites[identifier] = Animation(frameDuration, *regions)
+        sprites[id] = Animation(frameDuration, *regions)
     }
 
     fun dispose() {
-
+        sprites.clear()
     }
 }

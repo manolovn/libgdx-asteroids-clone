@@ -1,4 +1,4 @@
-package dev.manolovn.burger.systems
+package dev.manolovn.burger.systems.entity
 
 import com.artemis.annotations.Wire
 import com.artemis.managers.TagManager
@@ -8,6 +8,8 @@ import com.badlogic.gdx.math.Vector2
 import dev.manolovn.burger.BurgerMenuGame.Companion.H
 import dev.manolovn.burger.BurgerMenuGame.Companion.W
 import dev.manolovn.burger.components.*
+import dev.manolovn.burger.systems.entity.SpawnerSystem.Tag.ASTEROID
+import dev.manolovn.burger.systems.entity.SpawnerSystem.Tag.SHIP
 import dev.manolovn.burger.util.Assets
 import net.mostlyoriginal.api.system.core.PassiveSystem
 import kotlin.random.Random
@@ -52,7 +54,7 @@ class SpawnerSystem(private val assets: Assets) : PassiveSystem() {
                 Color(),
             )
             .build()
-        tagManager.register("ship", ship)
+        tagManager.register(SHIP, ship)
     }
 
     private fun initAsteroids() {
@@ -73,10 +75,18 @@ class SpawnerSystem(private val assets: Assets) : PassiveSystem() {
                 Angle(MathUtils.PI2 * rand.nextFloat()),
                 Sprite(assets.gems[kind]),
                 Scale(),
-                Collision(3f),
+                Collision(10f),
                 Color(),
             )
             .build()
-        tagManager.register("asteroid", asteroid)
+        tagManager.register(ASTEROID, asteroid)
+    }
+
+    object Tag {
+        const val ASTEROID: String = "asteroid"
+        const val SHIP: String = "ship"
+    }
+    object Group {
+        const val BULLET: String = "bullet"
     }
 }

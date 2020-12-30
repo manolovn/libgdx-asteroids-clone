@@ -7,7 +7,17 @@ import com.artemis.managers.GroupManager
 import com.artemis.managers.TagManager
 import com.badlogic.gdx.Screen
 import dev.manolovn.burger.BurgerMenuGame
-import dev.manolovn.burger.systems.*
+import dev.manolovn.burger.systems.collide.BulletCollisionSystem
+import dev.manolovn.burger.systems.collide.CollisionDebugRenderSystem
+import dev.manolovn.burger.systems.collide.CollisionSystem
+import dev.manolovn.burger.systems.entity.BulletSystem
+import dev.manolovn.burger.systems.entity.SpawnerSystem
+import dev.manolovn.burger.systems.input.KeyboardSystem
+import dev.manolovn.burger.systems.input.MouseSystem
+import dev.manolovn.burger.systems.render.AnimRenderingSystem
+import dev.manolovn.burger.systems.render.CameraSystem
+import dev.manolovn.burger.systems.render.PhysicsSystem
+import dev.manolovn.burger.systems.render.RenderingSystem
 import net.mostlyoriginal.api.plugin.extendedcomponentmapper.ExtendedComponentMapperPlugin
 import net.mostlyoriginal.plugin.ProfilerPlugin
 
