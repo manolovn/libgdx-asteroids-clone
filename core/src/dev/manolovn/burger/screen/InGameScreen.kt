@@ -40,6 +40,7 @@ class InGameScreen(
                     // rendering
                     CameraSystem(game),
                     RenderingSystem(game.batch),
+                    AnimRenderingSystem(game.assets, game.batch),
                     CollisionDebugRenderSystem()
                 )
                 .build()

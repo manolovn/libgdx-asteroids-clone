@@ -2,26 +2,36 @@ package dev.manolovn.burger.util
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import java.util.HashMap
 import java.util.stream.IntStream.range
 
 class Assets {
 
     private lateinit var gemsTexture: Sprite
 
+    var sprites = HashMap<String, Animation<TextureRegion>>()
+
     lateinit var gems: MutableList<Sprite>
     lateinit var bg: Sprite
     lateinit var spaceship: Sprite
     lateinit var bullet: Sprite
+    lateinit var explosion: Texture
 
-    private fun loadTexture(path: String): Sprite = Sprite(Texture(Gdx.files.internal(path)))
+    private fun loadSprite(path: String): Sprite = Sprite(Texture(Gdx.files.internal(path)))
+    private fun loadTexture(path: String): Texture = Texture(Gdx.files.internal(path))
 
     fun loadAll(): Assets {
-        bg = loadTexture("space-bg.jpg")
-        gemsTexture = loadTexture("gems.png")
-        spaceship = loadTexture("spaceship.png")
-        bullet = loadTexture("bullet.png")
+        bg = loadSprite("space-bg.jpg")
+        gemsTexture = loadSprite("gems.png")
+        spaceship = loadSprite("spaceship.png")
+        bullet = loadSprite("bullet.png")
+
+        explosion = loadTexture("explosion.png")
+
+        add("explosion", 0, 0, 256, 256, 4, 4, explosion, .05f)
 
         gems = mutableListOf()
         for (i in range(0, 6)) {
@@ -29,6 +39,27 @@ class Assets {
         }
 
         return this
+    }
+
+    private fun add(
+        identifier: String,
+        x1: Int,
+        y1: Int,
+        w: Int,
+        h: Int,
+        repeatX: Int,
+        repeatY: Int,
+        texture: Texture?,
+        frameDuration: Float
+    ) {
+        val regions = arrayOfNulls<TextureRegion>(repeatX * repeatY)
+        var count = 0
+        for (y in 0 until repeatY) {
+            for (x in 0 until repeatX) {
+                regions[count++] = TextureRegion(texture, x1 + w * x, y1 + h * y, w, h)
+            }
+        }
+        sprites[identifier] = Animation(frameDuration, *regions)
     }
 
     fun dispose() {
