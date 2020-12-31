@@ -10,10 +10,9 @@ import dev.manolovn.burger.BurgerMenuGame
 import dev.manolovn.burger.systems.collide.BulletCollisionSystem
 import dev.manolovn.burger.systems.collide.CollisionDebugRenderSystem
 import dev.manolovn.burger.systems.collide.CollisionSystem
-import dev.manolovn.burger.systems.entity.BulletSystem
+import dev.manolovn.burger.systems.logic.BulletSystem
 import dev.manolovn.burger.systems.entity.SpawnerSystem
 import dev.manolovn.burger.systems.input.KeyboardSystem
-import dev.manolovn.burger.systems.input.MouseSystem
 import dev.manolovn.burger.systems.render.*
 import net.mostlyoriginal.api.plugin.extendedcomponentmapper.ExtendedComponentMapperPlugin
 import net.mostlyoriginal.plugin.ProfilerPlugin
@@ -43,7 +42,6 @@ class InGameScreen(
                     CollisionSystem(),
                     BulletCollisionSystem(),
                     // input handling
-                    MouseSystem(),
                     KeyboardSystem(),
                     // rendering
                     CameraSystem(game.batch),

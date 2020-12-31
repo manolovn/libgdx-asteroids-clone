@@ -36,7 +36,7 @@ object EntityFactory {
         .with(
             Ship(),
             Pos(BurgerMenuGame.W / 2, BurgerMenuGame.H / 2),
-            Angle(MathUtils.PI),
+            Angle(),
             Scale(),
             Renderable(2),
             Control(),
@@ -46,7 +46,7 @@ object EntityFactory {
         )
         .build()
 
-    fun bg(world: World, sprite: GdxSprite) =
+    fun bg(world: World, sprite: GdxSprite): Entity =
         EntityBuilder(world)
             .with(
                 Pos(-BurgerMenuGame.W / 2f, -BurgerMenuGame.H / 2f),
@@ -71,5 +71,10 @@ object EntityFactory {
                 Sprite(sprite),
                 Color(),
             )
+            .build()
+
+    fun explosion(world: World, pos: Pos): Entity =
+        EntityBuilder(world)
+            .with(pos, Anim(id = "explosion"))
             .build()
 }

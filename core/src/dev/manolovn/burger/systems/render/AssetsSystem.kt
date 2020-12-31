@@ -30,9 +30,9 @@ class AssetsSystem : PassiveSystem() {
         spaceship = loadSprite("spaceship.png")
         bullet = loadSprite("bullet.png")
 
-        explosion = loadTexture("explosion.png")
+        explosion = loadTexture("exp.png")
 
-        add("explosion", 0, 0, 256, 256, 4, 4, explosion, .05f)
+        add("explosion", 0, 0, 64, 64, 4, 4, explosion, .05f)
 
         gems = mutableListOf()
         for (i in range(0, 6)) {

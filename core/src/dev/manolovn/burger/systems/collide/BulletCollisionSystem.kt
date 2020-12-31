@@ -6,12 +6,11 @@ import com.artemis.annotations.All
 import com.artemis.managers.GroupManager
 import com.artemis.managers.TagManager
 import com.artemis.systems.EntityProcessingSystem
-import com.artemis.utils.EntityBuilder
-import dev.manolovn.burger.components.Anim
 import dev.manolovn.burger.components.Collision
 import dev.manolovn.burger.components.Pos
 import dev.manolovn.burger.systems.entity.SpawnerSystem.Group.BULLET
 import dev.manolovn.burger.systems.entity.SpawnerSystem.Tag.SHIP
+import dev.manolovn.burger.util.EntityFactory
 
 @All(Collision::class)
 class BulletCollisionSystem : EntityProcessingSystem() {
@@ -27,15 +26,11 @@ class BulletCollisionSystem : EntityProcessingSystem() {
         if (ship.id == e.id) return
         if (groupManager.isInGroup(e, BULLET)) return
 
-        val bullets = groupManager.getEntities(BULLET)
-        for (bullet in bullets) {
+        groupManager.getEntities(BULLET).forEach { bullet ->
             if (collisionSystem.collides(bullet, e)) {
                 bullet.deleteFromWorld()
                 e.deleteFromWorld()
-                val pos = posMapper[e]
-                EntityBuilder(world)
-                    .with(pos, Anim(id = "explosion"))
-                    .build()
+                EntityFactory.explosion(world, posMapper[e])
             }
         }
     }

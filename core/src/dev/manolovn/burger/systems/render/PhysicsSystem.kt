@@ -10,6 +10,8 @@ import dev.manolovn.burger.BurgerMenuGame.Companion.W
 import dev.manolovn.burger.components.Angle
 import dev.manolovn.burger.components.Physics
 import dev.manolovn.burger.components.Pos
+import dev.manolovn.burger.components.asVector
+import dev.manolovn.burger.systems.entity.SpawnerSystem.Group
 
 @All(Physics::class)
 class PhysicsSystem : IteratingSystem() {
@@ -23,11 +25,11 @@ class PhysicsSystem : IteratingSystem() {
     override fun process(entityId: Int) {
         val phys = physMapper[entityId]
         val p = posMapper[entityId]
-        val pos = Vector2(p.x, p.y)
         val ang = angleMapper[entityId]
 
+        val pos = p.asVector()
         pos.add(phys.v.cpy().scl(world.delta * .5f))
-        if (!groupManager.isInGroup(entityId, "bullet")) {
+        if (!groupManager.isInGroup(entityId, Group.BULLET)) {
             wrap(pos)
         }
         p.x = pos.x

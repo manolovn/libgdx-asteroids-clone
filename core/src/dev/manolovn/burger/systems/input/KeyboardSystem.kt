@@ -11,19 +11,17 @@ import dev.manolovn.burger.components.Control
 @All(Angle::class, Control::class)
 class KeyboardSystem : IteratingSystem() {
 
-    lateinit var angleMapper: ComponentMapper<Angle>
+    private lateinit var angleMapper: ComponentMapper<Angle>
+    private lateinit var controlMapper: ComponentMapper<Control>
 
     override fun process(entityId: Int) {
         val angle = angleMapper[entityId]
+        val control = controlMapper[entityId]
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            angle.value += speed * world.delta
+            angle.value += control.turnSpeed * world.delta
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            angle.value -= speed * world.delta
+            angle.value -= control.turnSpeed * world.delta
         }
-    }
-
-    companion object {
-        const val speed = 2.5f
     }
 }

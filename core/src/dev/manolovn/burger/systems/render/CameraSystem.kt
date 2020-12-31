@@ -14,7 +14,6 @@ class CameraSystem(
     private var camera = OrthographicCamera(graphics.width.toFloat(), graphics.height.toFloat())
 
     override fun initialize() {
-        super.initialize()
         camera.setToOrtho(false, graphics.width.toFloat(), graphics.height.toFloat())
         batch.projectionMatrix = camera.combined
     }

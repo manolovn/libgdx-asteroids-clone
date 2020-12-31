@@ -1,4 +1,4 @@
-package dev.manolovn.burger.systems.entity
+package dev.manolovn.burger.systems.logic
 
 import com.artemis.ComponentMapper
 import com.artemis.annotations.All
@@ -7,7 +7,7 @@ import com.artemis.systems.IteratingSystem
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import dev.manolovn.burger.components.*
-import dev.manolovn.burger.systems.entity.SpawnerSystem.Group.BULLET
+import dev.manolovn.burger.systems.entity.SpawnerSystem.Group
 import dev.manolovn.burger.systems.render.AssetsSystem
 import dev.manolovn.burger.util.EntityFactory
 
@@ -24,8 +24,9 @@ class BulletSystem : IteratingSystem() {
         if (Gdx.input.isKeyPressed(Input.Keys.Z)) {
             val angle = angleMapper[id]
             val pos = posMapper[id]
-            val bullet = EntityFactory.bullet(world, pos, angle, assets.bullet)
-            groupManager.add(bullet, BULLET)
+            EntityFactory.bullet(world, pos, angle, assets.bullet).also {
+                groupManager.add(it, Group.BULLET)
+            }
         }
     }
 }
