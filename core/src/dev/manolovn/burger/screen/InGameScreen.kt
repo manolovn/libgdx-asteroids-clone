@@ -7,12 +7,14 @@ import com.artemis.managers.GroupManager
 import com.artemis.managers.TagManager
 import com.badlogic.gdx.Screen
 import dev.manolovn.burger.BurgerMenuGame
+import dev.manolovn.burger.systems.collide.AsteroidCollisionSystem
 import dev.manolovn.burger.systems.collide.BulletCollisionSystem
 import dev.manolovn.burger.systems.collide.CollisionDebugRenderSystem
 import dev.manolovn.burger.systems.collide.CollisionSystem
 import dev.manolovn.burger.systems.entity.SpawnerSystem
 import dev.manolovn.burger.systems.input.KeyboardSystem
 import dev.manolovn.burger.systems.input.TouchSystem
+import dev.manolovn.burger.systems.logic.GameSystem
 import dev.manolovn.burger.systems.render.*
 import net.mostlyoriginal.api.plugin.extendedcomponentmapper.ExtendedComponentMapperPlugin
 import net.mostlyoriginal.plugin.ProfilerPlugin
@@ -40,6 +42,7 @@ class InGameScreen(
                     PhysicsSystem(),
                     CollisionSystem(),
                     BulletCollisionSystem(),
+                    AsteroidCollisionSystem(),
                     // input handling
                     KeyboardSystem(),
                     TouchSystem(),
@@ -48,7 +51,8 @@ class InGameScreen(
                     MapRenderingSystem(game.batch),
                     RenderingSystem(game.batch),
                     AnimRenderingSystem(game.batch),
-                    CollisionDebugRenderSystem()
+                    CollisionDebugRenderSystem(),
+                    GameSystem(game, game.batch),
                 )
                 .build()
         )

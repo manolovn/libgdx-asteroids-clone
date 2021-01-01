@@ -8,12 +8,12 @@ import com.artemis.managers.TagManager
 import com.artemis.systems.EntityProcessingSystem
 import dev.manolovn.burger.components.Collision
 import dev.manolovn.burger.components.Pos
-import dev.manolovn.burger.systems.entity.SpawnerSystem.Group.BULLET
+import dev.manolovn.burger.systems.entity.SpawnerSystem.Group.ASTEROID
 import dev.manolovn.burger.systems.entity.SpawnerSystem.Tag.SHIP
 import dev.manolovn.burger.util.EntityFactory
 
 @All(Collision::class)
-class BulletCollisionSystem : EntityProcessingSystem() {
+class AsteroidCollisionSystem : EntityProcessingSystem() {
 
     private lateinit var collisionSystem: CollisionSystem
     private lateinit var tagManager: TagManager
@@ -22,15 +22,13 @@ class BulletCollisionSystem : EntityProcessingSystem() {
     private lateinit var posMapper: ComponentMapper<Pos>
 
     override fun process(e: Entity) {
-        val ship = tagManager.getEntity(SHIP)
-        if (ship?.id == e.id) return
-        if (groupManager.isInGroup(e, BULLET)) return
+        val ship = tagManager.getEntity(SHIP) ?: return
+        if (!groupManager.isInGroup(e, ASTEROID)) return
 
-        groupManager.getEntities(BULLET).forEach { bullet ->
-            if (collisionSystem.collides(bullet, e)) {
-                bullet.deleteFromWorld()
-                e.deleteFromWorld()
-                EntityFactory.explosion(world, posMapper[e])
+        groupManager.getEntities(ASTEROID).forEach { asteroid ->
+            if (collisionSystem.collides(asteroid, ship)) {
+                EntityFactory.explosion(world, posMapper[ship])
+                ship.deleteFromWorld()
             }
         }
     }

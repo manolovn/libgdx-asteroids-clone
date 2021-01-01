@@ -11,7 +11,10 @@ class BurgerMenuGame : Game() {
     override fun create() {
         batch = SpriteBatch()
 
-        // initial screen
+        restart()
+    }
+
+    fun restart() {
         setScreen(InGameScreen(this))
     }
 

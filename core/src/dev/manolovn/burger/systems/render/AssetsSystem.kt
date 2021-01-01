@@ -1,12 +1,16 @@
 package dev.manolovn.burger.systems.render
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Animation
+import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter
 import net.mostlyoriginal.api.system.core.PassiveSystem
-import java.util.HashMap
+import java.util.*
 import java.util.stream.IntStream.range
 
 class AssetsSystem : PassiveSystem() {
@@ -21,6 +25,9 @@ class AssetsSystem : PassiveSystem() {
     lateinit var bullet: Sprite
     lateinit var explosion: Texture
 
+    lateinit var font: BitmapFont
+    lateinit var fontSmall: BitmapFont
+
     private fun loadSprite(path: String): Sprite = Sprite(Texture(Gdx.files.internal(path)))
     private fun loadTexture(path: String): Texture = Texture(Gdx.files.internal(path))
 
@@ -32,6 +39,8 @@ class AssetsSystem : PassiveSystem() {
 
         explosion = loadTexture("exp.png")
 
+        loadFont()
+
         add("explosion", 0, 0, 64, 64, 4, 4, explosion, .05f)
 
         gems = mutableListOf()
@@ -40,7 +49,24 @@ class AssetsSystem : PassiveSystem() {
         }
     }
 
-    private fun add(id: String,
+    private fun loadFont() {
+        val generator = FreeTypeFontGenerator(Gdx.files.internal("font/floppy.ttf"))
+        with(generator) {
+            font = generateFont(FreeTypeFontParameter().also {
+                it.size = 50
+                it.borderWidth = 1f
+                it.color = Color.YELLOW
+            })
+            fontSmall = generateFont(FreeTypeFontParameter().also {
+                it.size = 25
+                it.color = Color.WHITE
+            })
+            dispose()
+        }
+    }
+
+    private fun add(
+        id: String,
         x1: Int,
         y1: Int,
         w: Int,
@@ -48,7 +74,7 @@ class AssetsSystem : PassiveSystem() {
         repeatX: Int,
         repeatY: Int,
         texture: Texture?,
-        frameDuration: Float
+        frameDuration: Float,
     ) {
         val regions = arrayOfNulls<TextureRegion>(repeatX * repeatY)
         var count = 0
