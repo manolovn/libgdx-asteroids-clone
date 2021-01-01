@@ -4,7 +4,6 @@ import com.artemis.ComponentMapper
 import com.artemis.Entity
 import com.artemis.annotations.All
 import dev.manolovn.burger.components.Collision
-import dev.manolovn.burger.components.Color
 import dev.manolovn.burger.components.Pos
 import net.mostlyoriginal.api.system.core.PassiveSystem
 import kotlin.math.pow
@@ -15,7 +14,6 @@ class CollisionSystem : PassiveSystem() {
 
     private lateinit var collisionMapper: ComponentMapper<Collision>
     private lateinit var posMapper: ComponentMapper<Pos>
-    private lateinit var colorMapper: ComponentMapper<Color>
 
     fun collides(a: Entity, b: Entity): Boolean {
         val id1 = a.id
@@ -30,8 +28,6 @@ class CollisionSystem : PassiveSystem() {
                     + (pos1.y - pos2.y).toDouble().pow(2.0)
         )
         if (d < r1 + r2) {
-            colorMapper[id1].color = com.badlogic.gdx.graphics.Color.RED
-            colorMapper[id2].color = com.badlogic.gdx.graphics.Color.RED
             return true
         }
         return false
