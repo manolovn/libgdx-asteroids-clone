@@ -3,9 +3,11 @@ package dev.manolovn.burger.util
 import com.artemis.Entity
 import com.artemis.World
 import com.artemis.utils.EntityBuilder
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
-import dev.manolovn.burger.BurgerMenuGame
+import dev.manolovn.burger.BurgerMenuGame.Companion.H
+import dev.manolovn.burger.BurgerMenuGame.Companion.W
 import dev.manolovn.burger.components.*
 import kotlin.random.Random
 import com.badlogic.gdx.graphics.g2d.Sprite as GdxSprite
@@ -15,15 +17,17 @@ object EntityFactory {
     fun asteroid(world: World, sprites: MutableList<GdxSprite>): Entity {
         val rand = Random
         val kind = Random.nextInt(sprites.size)
+        val x = Gdx.graphics.width * 0.6f * (rand.nextFloat() - 0.5f)
+        val y = Gdx.graphics.height * (rand.nextFloat() - 0.5f)
         return EntityBuilder(world)
             .with(
                 Pos(
-                    BurgerMenuGame.W * 0.6f * (rand.nextFloat() - 0.5f),
-                    BurgerMenuGame.H * (rand.nextFloat() - 0.5f)
+                    x + (sprites[kind].width / 2),
+                    y + (sprites[kind].height / 2)
                 ),
                 Renderable(2),
-                Physics(Vector2(200f, 0f).rotateRad(MathUtils.PI2 * rand.nextFloat())),
-                Angle(MathUtils.PI2 * rand.nextFloat()),
+                Physics(Vector2(300f, 0f).rotateRad(MathUtils.PI2 * rand.nextFloat())),
+                Angle(),
                 Sprite(sprites[kind]),
                 Scale(),
                 Collision(10f),
@@ -35,12 +39,12 @@ object EntityFactory {
     fun ship(world: World, sprite: GdxSprite): Entity = EntityBuilder(world)
         .with(
             Ship(),
-            Pos(BurgerMenuGame.W / 2, BurgerMenuGame.H / 2),
+            Pos(W / 2, H / 2),
             Angle(),
             Scale(),
             Renderable(2),
             Control(),
-            Collision(3f),
+            Collision(10f),
             Sprite(sprite),
             Color(),
         )
@@ -49,7 +53,8 @@ object EntityFactory {
     fun bg(world: World, sprite: GdxSprite): Entity =
         EntityBuilder(world)
             .with(
-                Pos(-BurgerMenuGame.W / 2f, -BurgerMenuGame.H / 2f),
+                MapElement(),
+                Pos(0f, 0f),
                 Angle(0f),
                 Scale(),
                 Renderable(1),
@@ -62,7 +67,7 @@ object EntityFactory {
         EntityBuilder(world)
             .with(
                 Damage(1),
-                Physics(Vector2(300f, 0f).rotateRad(angle.value)),
+                Physics(Vector2(600f, 0f).rotateRad(angle.value)),
                 Pos(pos.x, pos.y),
                 Angle(angle.value),
                 Scale(),
