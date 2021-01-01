@@ -22,7 +22,7 @@ class BurgerMenuGame : Game() {
     }
 
     companion object {
-        const val W = 740f
+        const val W = 800f
         const val H = 480f
     }
 }
