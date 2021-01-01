@@ -3,6 +3,7 @@ package dev.manolovn.burger.systems.collide
 import com.artemis.ComponentMapper
 import com.artemis.annotations.All
 import com.artemis.systems.IteratingSystem
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import dev.manolovn.burger.components.Collision
 import dev.manolovn.burger.components.Pos
@@ -17,6 +18,7 @@ class CollisionDebugRenderSystem(
 
     override fun begin() {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
+        shapeRenderer.color = Color.GREEN
     }
 
     override fun process(entityId: Int) {
