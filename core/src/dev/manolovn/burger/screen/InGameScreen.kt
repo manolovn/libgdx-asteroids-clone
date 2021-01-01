@@ -45,6 +45,7 @@ class InGameScreen(
                     KeyboardSystem(),
                     // rendering
                     CameraSystem(game.batch),
+                    MapRenderingSystem(game.batch),
                     RenderingSystem(game.batch),
                     AnimRenderingSystem(game.batch),
                     CollisionDebugRenderSystem()
