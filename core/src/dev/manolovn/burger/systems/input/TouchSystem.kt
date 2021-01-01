@@ -5,7 +5,7 @@ import com.artemis.annotations.All
 import com.artemis.managers.GroupManager
 import com.artemis.systems.IteratingSystem
 import com.badlogic.gdx.Gdx
-import dev.manolovn.burger.BurgerMenuGame.Companion.W
+import dev.manolovn.burger.AsteroidsGame.Companion.W
 import dev.manolovn.burger.components.Angle
 import dev.manolovn.burger.components.Control
 import dev.manolovn.burger.components.Pos

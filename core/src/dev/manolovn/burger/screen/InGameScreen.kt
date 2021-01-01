@@ -6,7 +6,7 @@ import com.artemis.link.EntityLinkManager
 import com.artemis.managers.GroupManager
 import com.artemis.managers.TagManager
 import com.badlogic.gdx.Screen
-import dev.manolovn.burger.BurgerMenuGame
+import dev.manolovn.burger.AsteroidsGame
 import dev.manolovn.burger.systems.collide.AsteroidCollisionSystem
 import dev.manolovn.burger.systems.collide.BulletCollisionSystem
 import dev.manolovn.burger.systems.collide.CollisionDebugRenderSystem
@@ -20,7 +20,7 @@ import net.mostlyoriginal.api.plugin.extendedcomponentmapper.ExtendedComponentMa
 import net.mostlyoriginal.plugin.ProfilerPlugin
 
 class InGameScreen(
-    private val game: BurgerMenuGame
+    private val game: AsteroidsGame
 ) : Screen {
 
     private lateinit var world: World

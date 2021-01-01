@@ -5,8 +5,8 @@ import com.artemis.annotations.All
 import com.artemis.managers.GroupManager
 import com.artemis.systems.IteratingSystem
 import com.badlogic.gdx.math.Vector2
-import dev.manolovn.burger.BurgerMenuGame.Companion.H
-import dev.manolovn.burger.BurgerMenuGame.Companion.W
+import dev.manolovn.burger.AsteroidsGame.Companion.H
+import dev.manolovn.burger.AsteroidsGame.Companion.W
 import dev.manolovn.burger.components.Angle
 import dev.manolovn.burger.components.Physics
 import dev.manolovn.burger.components.Pos

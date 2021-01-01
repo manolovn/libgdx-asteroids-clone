@@ -4,8 +4,8 @@ import com.artemis.EntitySystem
 import com.artemis.annotations.All
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import dev.manolovn.burger.BurgerMenuGame.Companion.H
-import dev.manolovn.burger.BurgerMenuGame.Companion.W
+import dev.manolovn.burger.AsteroidsGame.Companion.H
+import dev.manolovn.burger.AsteroidsGame.Companion.W
 
 @All
 class CameraSystem(

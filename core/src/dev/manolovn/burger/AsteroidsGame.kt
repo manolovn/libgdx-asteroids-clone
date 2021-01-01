@@ -4,7 +4,7 @@ import com.badlogic.gdx.Game
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import dev.manolovn.burger.screen.InGameScreen
 
-class BurgerMenuGame : Game() {
+class AsteroidsGame : Game() {
 
     lateinit var batch: SpriteBatch
 

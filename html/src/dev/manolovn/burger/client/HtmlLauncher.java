@@ -3,7 +3,7 @@ package dev.manolovn.burger.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import dev.manolovn.burger.BurgerMenuGame;
+import dev.manolovn.burger.AsteroidsGame;
 
 public class HtmlLauncher extends GwtApplication {
 
@@ -17,6 +17,6 @@ public class HtmlLauncher extends GwtApplication {
 
         @Override
         public ApplicationListener createApplicationListener () {
-                return new BurgerMenuGame();
+                return new AsteroidsGame();
         }
 }

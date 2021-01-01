@@ -6,8 +6,8 @@ import com.artemis.utils.EntityBuilder
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
-import dev.manolovn.burger.BurgerMenuGame.Companion.H
-import dev.manolovn.burger.BurgerMenuGame.Companion.W
+import dev.manolovn.burger.AsteroidsGame.Companion.H
+import dev.manolovn.burger.AsteroidsGame.Companion.W
 import dev.manolovn.burger.components.*
 import kotlin.random.Random
 import com.badlogic.gdx.graphics.g2d.Sprite as GdxSprite

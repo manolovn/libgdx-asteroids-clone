@@ -6,14 +6,14 @@ import com.artemis.managers.GroupManager
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import dev.manolovn.burger.BurgerMenuGame
+import dev.manolovn.burger.AsteroidsGame
 import dev.manolovn.burger.systems.entity.SpawnerSystem.Group.ASTEROID
 import dev.manolovn.burger.systems.entity.SpawnerSystem.Group.PLAYER
 import dev.manolovn.burger.systems.render.AssetsSystem
 
 @All
 class GameSystem(
-    private val game: BurgerMenuGame,
+    private val game: AsteroidsGame,
     private val batch: SpriteBatch,
 ) : EntitySystem() {
 
