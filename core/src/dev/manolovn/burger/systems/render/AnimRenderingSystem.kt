@@ -11,7 +11,7 @@ import dev.manolovn.burger.components.Pos
 
 @All(Anim::class)
 class AnimRenderingSystem(
-    private val batch: SpriteBatch
+    private val batch: SpriteBatch,
 ) : EntitySystem() {
 
     private lateinit var assets: AssetsSystem
@@ -42,10 +42,10 @@ class AnimRenderingSystem(
         val h = frame.regionHeight.toFloat()
         batch.draw(
             frame,
-            position.x - w/2,
-            position.y - h/2,
-            w/2,
-            h/2,
+            position.x - w / 2,
+            position.y - h / 2,
+            w / 2,
+            h / 2,
             w,
             h,
             1f, 1f, 0f
