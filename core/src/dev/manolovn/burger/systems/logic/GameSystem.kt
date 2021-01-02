@@ -26,30 +26,34 @@ class GameSystem(
 
     override fun processSystem() {
         if (groupManager.getEntities(ASTEROID).isEmpty) {
-            with(assetSystem.font) {
-                draw(batch, "YOU WIN!!", 300f, 250f)
-            }
-            with(assetSystem.fontSmall) {
-                draw(batch, "press SPACE to restart", 200f, 150f)
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-                // restart game
-                game.restart()
-                return
-            }
+            title("YOU WIN!!")
+            subtitle("press SPACE to restart")
+            waitRestart()
         }
         if (groupManager.getEntities(PLAYER).isEmpty) {
-            with(assetSystem.font) {
-                draw(batch, "YOU'RE DEAD", 300f, 250f)
-            }
-            with(assetSystem.fontSmall) {
-                draw(batch, "press SPACE to restart", 200f, 150f)
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-                // restart game
-                game.restart()
-                return
-            }
+            title("YOU'RE DEAD")
+            subtitle("press SPACE to restart")
+            waitRestart()
+        }
+    }
+
+    private fun waitRestart() {
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            // restart game
+            game.restart()
+            return
+        }
+    }
+
+    private fun title(s: String) {
+        with(assetSystem.font) {
+            draw(batch, s, 300f, 250f)
+        }
+    }
+
+    private fun subtitle(s: String) {
+        with(assetSystem.fontSmall) {
+            draw(batch, s, 295f, 190f)
         }
     }
 
