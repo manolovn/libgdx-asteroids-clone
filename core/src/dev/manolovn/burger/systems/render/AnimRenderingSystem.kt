@@ -37,13 +37,18 @@ class AnimRenderingSystem(
 
     private fun drawAnimation(anim: Anim, position: Pos, id: String) {
         val animation: Animation<TextureRegion> = assets.sprites[id] ?: return
-        val frame: TextureRegion = animation.getKeyFrame(anim.age, false)
+        val frame: TextureRegion = animation.getKeyFrame(anim.age, anim.looping)
+        val w = frame.regionWidth.toFloat()
+        val h = frame.regionHeight.toFloat()
         batch.draw(
             frame,
-            position.x,
-            position.y,
-            frame.regionWidth.toFloat(),
-            frame.regionHeight.toFloat()
+            position.x - w/2,
+            position.y - h/2,
+            w/2,
+            h/2,
+            w,
+            h,
+            1f, 1f, 0f
         )
     }
 }

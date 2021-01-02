@@ -11,7 +11,7 @@ import dev.manolovn.burger.components.Angle
 import dev.manolovn.burger.components.Physics
 import dev.manolovn.burger.components.Pos
 import dev.manolovn.burger.components.asVector
-import dev.manolovn.burger.systems.entity.SpawnerSystem.Group
+import dev.manolovn.burger.systems.entity.Group
 
 @All(Physics::class)
 class PhysicsSystem : IteratingSystem() {

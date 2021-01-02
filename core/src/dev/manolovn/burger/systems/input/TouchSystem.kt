@@ -10,7 +10,7 @@ import dev.manolovn.burger.components.Angle
 import dev.manolovn.burger.components.Control
 import dev.manolovn.burger.components.Pos
 import dev.manolovn.burger.components.Ship
-import dev.manolovn.burger.systems.entity.SpawnerSystem
+import dev.manolovn.burger.systems.entity.Group
 import dev.manolovn.burger.systems.render.AssetsSystem
 import dev.manolovn.burger.util.EntityFactory
 
@@ -27,6 +27,7 @@ class TouchSystem : IteratingSystem() {
     override fun process(entityId: Int) {
         val angle = angleMapper[entityId]
         val control = controlMapper[entityId]
+        val pos = posMapper[entityId]
 
         if (Gdx.input.isTouched) {
             if (Gdx.input.x > 3 * W / 4) {
@@ -36,16 +37,14 @@ class TouchSystem : IteratingSystem() {
                 angle.value += control.turnSpeed * world.delta
             }
             if (Gdx.input.x > W / 4 && Gdx.input.x < 3 * W / 4) {
-                shoot(entityId)
+                shoot(pos, angle)
             }
         }
     }
 
-    private fun shoot(id: Int) {
-        val angle = angleMapper[id]
-        val pos = posMapper[id]
+    private fun shoot(pos: Pos, angle: Angle) {
         EntityFactory.bullet(world, pos, angle, assets.bullet).also {
-            groupManager.add(it, SpawnerSystem.Group.BULLET)
+            groupManager.add(it, Group.BULLET)
         }
     }
 }

@@ -14,8 +14,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite as GdxSprite
 
 object EntityFactory {
 
+    private val rand = Random
+
     fun asteroid(world: World, sprites: MutableList<GdxSprite>): Entity {
-        val rand = Random
         val kind = Random.nextInt(sprites.size)
         val x = Gdx.graphics.width * 0.6f * (rand.nextFloat() - 0.5f)
         val y = Gdx.graphics.height * (rand.nextFloat() - 0.5f)
@@ -82,4 +83,19 @@ object EntityFactory {
         EntityBuilder(world)
             .with(pos, Anim(id = "explosion"))
             .build()
+
+    fun powerUp(world: World): Entity {
+        val x = Gdx.graphics.width * 0.6f * (rand.nextFloat() - 0.5f)
+        val y = Gdx.graphics.height * (rand.nextFloat() - 0.5f)
+        return EntityBuilder(world)
+            .with(
+                Pos(x, y),
+                Angle(),
+                Collision(10f),
+                Anim(id = "powerup-${rand.nextInt(1, 3)}", looping = true),
+                Physics(Vector2(300f, 0f).rotateRad(MathUtils.PI2 * rand.nextFloat())),
+                PowerUp(type = PowerUpType.SPEED)
+            )
+            .build()
+    }
 }

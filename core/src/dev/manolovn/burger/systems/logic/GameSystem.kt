@@ -7,8 +7,8 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import dev.manolovn.burger.AsteroidsGame
-import dev.manolovn.burger.systems.entity.SpawnerSystem.Group.ASTEROID
-import dev.manolovn.burger.systems.entity.SpawnerSystem.Group.PLAYER
+import dev.manolovn.burger.systems.entity.Group.ASTEROID
+import dev.manolovn.burger.systems.entity.Group.PLAYER
 import dev.manolovn.burger.systems.render.AssetsSystem
 
 @All

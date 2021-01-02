@@ -10,7 +10,7 @@ import dev.manolovn.burger.components.Angle
 import dev.manolovn.burger.components.Control
 import dev.manolovn.burger.components.Pos
 import dev.manolovn.burger.components.Ship
-import dev.manolovn.burger.systems.entity.SpawnerSystem
+import dev.manolovn.burger.systems.entity.Group
 import dev.manolovn.burger.systems.render.AssetsSystem
 import dev.manolovn.burger.util.EntityFactory
 
@@ -25,8 +25,10 @@ class KeyboardSystem : IteratingSystem() {
     private lateinit var controlMapper: ComponentMapper<Control>
 
     override fun process(entityId: Int) {
+        val pos = posMapper[entityId]
         val angle = angleMapper[entityId]
         val control = controlMapper[entityId]
+
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             angle.value += control.turnSpeed * world.delta
         }
@@ -34,15 +36,13 @@ class KeyboardSystem : IteratingSystem() {
             angle.value -= control.turnSpeed * world.delta
         }
         if (Gdx.input.isKeyPressed(Input.Keys.Z)) {
-            shoot(entityId)
+            shoot(pos, angle)
         }
     }
 
-    private fun shoot(id: Int) {
-        val angle = angleMapper[id]
-        val pos = posMapper[id]
+    private fun shoot(pos: Pos, angle: Angle) {
         EntityFactory.bullet(world, pos, angle, assets.bullet).also {
-            groupManager.add(it, SpawnerSystem.Group.BULLET)
+            groupManager.add(it, Group.BULLET)
         }
     }
 }

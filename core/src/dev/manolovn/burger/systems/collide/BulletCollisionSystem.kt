@@ -8,8 +8,8 @@ import com.artemis.managers.TagManager
 import com.artemis.systems.EntityProcessingSystem
 import dev.manolovn.burger.components.Collision
 import dev.manolovn.burger.components.Pos
-import dev.manolovn.burger.systems.entity.SpawnerSystem.Group.BULLET
-import dev.manolovn.burger.systems.entity.SpawnerSystem.Tag.SHIP
+import dev.manolovn.burger.systems.entity.Group.BULLET
+import dev.manolovn.burger.systems.entity.Tag.SHIP
 import dev.manolovn.burger.util.EntityFactory
 
 @All(Collision::class)

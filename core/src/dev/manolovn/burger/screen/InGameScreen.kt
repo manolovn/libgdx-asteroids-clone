@@ -11,6 +11,7 @@ import dev.manolovn.burger.systems.collide.AsteroidCollisionSystem
 import dev.manolovn.burger.systems.collide.BulletCollisionSystem
 import dev.manolovn.burger.systems.collide.CollisionDebugRenderSystem
 import dev.manolovn.burger.systems.collide.CollisionSystem
+import dev.manolovn.burger.systems.entity.PowerUpSpawnerSystem
 import dev.manolovn.burger.systems.entity.SpawnerSystem
 import dev.manolovn.burger.systems.input.KeyboardSystem
 import dev.manolovn.burger.systems.input.TouchSystem
@@ -38,6 +39,7 @@ class InGameScreen(
                     GroupManager(),
                     AssetsSystem(),
                     SpawnerSystem(),
+                    PowerUpSpawnerSystem(),
                     // in game logic
                     PhysicsSystem(),
                     CollisionSystem(),

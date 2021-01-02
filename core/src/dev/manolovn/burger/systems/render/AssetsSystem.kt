@@ -23,7 +23,9 @@ class AssetsSystem : PassiveSystem() {
     lateinit var bg: Sprite
     lateinit var spaceship: Sprite
     lateinit var bullet: Sprite
+
     lateinit var explosion: Texture
+    lateinit var powerups: Texture
 
     lateinit var font: BitmapFont
     lateinit var fontSmall: BitmapFont
@@ -38,10 +40,14 @@ class AssetsSystem : PassiveSystem() {
         bullet = loadSprite("bullet.png")
 
         explosion = loadTexture("exp.png")
+        powerups = loadTexture("powerups.png")
 
         loadFont()
 
         add("explosion", 0, 0, 64, 64, 4, 4, explosion, .05f)
+        add("powerup-1", 0, 0, 32, 32, 8, 2, powerups, .05f)
+        add("powerup-2", 0, 64, 32, 32, 8, 2, powerups, .05f)
+        add("powerup-3", 0, 128, 32, 32, 8, 2, powerups, .05f)
 
         gems = mutableListOf()
         for (i in range(0, 6)) {
