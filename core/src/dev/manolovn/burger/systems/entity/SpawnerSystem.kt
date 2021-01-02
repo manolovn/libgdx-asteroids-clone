@@ -1,6 +1,5 @@
 package dev.manolovn.burger.systems.entity
 
-import com.artemis.annotations.Wire
 import com.artemis.managers.GroupManager
 import com.artemis.managers.TagManager
 import dev.manolovn.burger.systems.entity.Group.ASTEROID
@@ -10,7 +9,6 @@ import dev.manolovn.burger.systems.render.AssetsSystem
 import dev.manolovn.burger.util.EntityFactory
 import net.mostlyoriginal.api.system.core.PassiveSystem
 
-@Wire
 class SpawnerSystem : PassiveSystem() {
 
     private lateinit var assets: AssetsSystem
