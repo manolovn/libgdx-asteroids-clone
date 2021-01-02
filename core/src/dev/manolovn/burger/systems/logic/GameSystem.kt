@@ -5,11 +5,15 @@ import com.artemis.annotations.All
 import com.artemis.managers.GroupManager
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
+import com.badlogic.gdx.graphics.g2d.GlyphLayout
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import dev.manolovn.burger.AsteroidsGame
+import dev.manolovn.burger.AsteroidsGame.Companion.H
+import dev.manolovn.burger.AsteroidsGame.Companion.W
 import dev.manolovn.burger.systems.entity.Group.ASTEROID
 import dev.manolovn.burger.systems.entity.Group.PLAYER
 import dev.manolovn.burger.systems.render.AssetsSystem
+import dev.manolovn.burger.systems.render.CameraShakeSystem
 
 @All
 class GameSystem(
@@ -19,6 +23,7 @@ class GameSystem(
 
     private lateinit var assetSystem: AssetsSystem
     private lateinit var groupManager: GroupManager
+    private lateinit var cameraShakeSystem: CameraShakeSystem
 
     override fun begin() {
         batch.begin()
@@ -31,7 +36,8 @@ class GameSystem(
             waitRestart()
         }
         if (groupManager.getEntities(PLAYER).isEmpty) {
-            title("YOU'RE DEAD")
+            cameraShakeSystem.shake(200f)
+            title("GAME OVER")
             subtitle("press SPACE to restart")
             waitRestart()
         }
@@ -47,13 +53,15 @@ class GameSystem(
 
     private fun title(s: String) {
         with(assetSystem.font) {
-            draw(batch, s, 300f, 250f)
+            val glyphLayout = GlyphLayout(this, s)
+            draw(batch, s, (W - glyphLayout.width) / 2, (H + glyphLayout.height) / 2)
         }
     }
 
     private fun subtitle(s: String) {
         with(assetSystem.fontSmall) {
-            draw(batch, s, 295f, 190f)
+            val glyphLayout = GlyphLayout(this, s)
+            draw(batch, s, (W - glyphLayout.width) / 2, 210f)
         }
     }
 

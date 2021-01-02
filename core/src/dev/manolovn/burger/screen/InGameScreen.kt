@@ -50,6 +50,7 @@ class InGameScreen(
                     TouchSystem(),
                     // rendering
                     CameraSystem(game.batch),
+                    CameraShakeSystem(),
                     MapRenderingSystem(game.batch),
                     RenderingSystem(game.batch),
                     AnimRenderingSystem(game.batch),
