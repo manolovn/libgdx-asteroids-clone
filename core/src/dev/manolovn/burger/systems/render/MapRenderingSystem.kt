@@ -10,6 +10,8 @@ import dev.manolovn.burger.components.*
 @All(MapElement::class)
 class MapRenderingSystem(private val batch: SpriteBatch) : EntitySystem() {
 
+    private lateinit var cameraSystem: CameraSystem
+
     private lateinit var spriteMapper: ComponentMapper<Sprite>
     private lateinit var posMapper: ComponentMapper<Pos>
     private lateinit var colorMapper: ComponentMapper<Color>
@@ -17,6 +19,7 @@ class MapRenderingSystem(private val batch: SpriteBatch) : EntitySystem() {
     private lateinit var scaleMapper: ComponentMapper<Scale>
 
     override fun begin() {
+        batch.projectionMatrix = cameraSystem.camera.combined
         batch.begin()
     }
 

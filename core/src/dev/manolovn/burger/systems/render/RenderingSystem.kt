@@ -4,8 +4,6 @@ import com.artemis.ComponentMapper
 import com.artemis.EntitySystem
 import com.artemis.annotations.All
 import com.artemis.annotations.Exclude
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
 import dev.manolovn.burger.components.*
@@ -19,11 +17,6 @@ class RenderingSystem(private val batch: SpriteBatch): EntitySystem() {
     private lateinit var colorMapper: ComponentMapper<Color>
     private lateinit var angleMapper: ComponentMapper<Angle>
     private lateinit var scaleMapper: ComponentMapper<Scale>
-
-    override fun initialize() {
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
-    }
 
     override fun begin() {
         batch.begin()

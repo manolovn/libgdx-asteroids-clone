@@ -1,12 +1,11 @@
 package dev.manolovn.burger.systems.render
 
-import com.artemis.EntitySystem
-import com.artemis.annotations.All
+import com.artemis.BaseSystem
+import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
 
-@All
-class CameraShakeSystem : EntitySystem() {
+class CameraShakeSystem : BaseSystem() {
 
     lateinit var cameraSystem: CameraSystem
 
@@ -23,7 +22,7 @@ class CameraShakeSystem : EntitySystem() {
     }
 
     override fun processSystem() {
-        val camera = cameraSystem.camera
+        val camera: OrthographicCamera = cameraSystem.camera
         if (shake != 0f) {
             camera.position.x =
                 (camera.position.x + MathUtils.random(push.x)

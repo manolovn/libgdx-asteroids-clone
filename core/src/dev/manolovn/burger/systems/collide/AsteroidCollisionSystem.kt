@@ -10,12 +10,15 @@ import dev.manolovn.burger.components.Collision
 import dev.manolovn.burger.components.Pos
 import dev.manolovn.burger.systems.entity.Group.ASTEROID
 import dev.manolovn.burger.systems.entity.Tag.SHIP
+import dev.manolovn.burger.systems.render.CameraShakeSystem
 import dev.manolovn.burger.util.EntityFactory
 
 @All(Collision::class)
 class AsteroidCollisionSystem : EntityProcessingSystem() {
 
     private lateinit var collisionSystem: CollisionSystem
+    private lateinit var cameraShakeSystem: CameraShakeSystem
+
     private lateinit var tagManager: TagManager
     private lateinit var groupManager: GroupManager
 
@@ -27,6 +30,7 @@ class AsteroidCollisionSystem : EntityProcessingSystem() {
 
         groupManager.getEntities(ASTEROID).forEach { asteroid ->
             if (collisionSystem.collides(asteroid, ship)) {
+                cameraShakeSystem.shake(3f)
                 EntityFactory.explosion(world, posMapper[ship])
                 ship.deleteFromWorld()
             }

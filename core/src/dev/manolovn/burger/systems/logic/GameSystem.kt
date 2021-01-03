@@ -13,7 +13,6 @@ import dev.manolovn.burger.AsteroidsGame.Companion.W
 import dev.manolovn.burger.systems.entity.Group.ASTEROID
 import dev.manolovn.burger.systems.entity.Group.PLAYER
 import dev.manolovn.burger.systems.render.AssetsSystem
-import dev.manolovn.burger.systems.render.CameraShakeSystem
 
 @All
 class GameSystem(
@@ -23,7 +22,6 @@ class GameSystem(
 
     private lateinit var assetSystem: AssetsSystem
     private lateinit var groupManager: GroupManager
-    private lateinit var cameraShakeSystem: CameraShakeSystem
 
     override fun begin() {
         batch.begin()
@@ -36,7 +34,6 @@ class GameSystem(
             waitRestart()
         }
         if (groupManager.getEntities(PLAYER).isEmpty) {
-            cameraShakeSystem.shake(200f)
             title("GAME OVER")
             subtitle("press SPACE to restart")
             waitRestart()

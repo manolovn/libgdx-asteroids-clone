@@ -5,7 +5,9 @@ import com.artemis.WorldConfigurationBuilder
 import com.artemis.link.EntityLinkManager
 import com.artemis.managers.GroupManager
 import com.artemis.managers.TagManager
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Screen
+import com.badlogic.gdx.graphics.GL20
 import dev.manolovn.burger.AsteroidsGame
 import dev.manolovn.burger.systems.collide.AsteroidCollisionSystem
 import dev.manolovn.burger.systems.collide.BulletCollisionSystem
@@ -62,6 +64,9 @@ class InGameScreen(
     }
 
     override fun render(delta: Float) {
+        Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
+
         world.delta = delta
         world.process()
     }
