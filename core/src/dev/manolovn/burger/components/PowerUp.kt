@@ -10,5 +10,6 @@ enum class PowerUpType {
     NONE, // nothing
     SPEED, // ship turn speed increased
     FREEZE, // freeze asteroids for 10 seconds
-    SHIELD, // shield around the ship
+    SHIELD, // shield around the ship for 5 seconds
+    SLOW, // slow asteroids for 10 seconds
 }
