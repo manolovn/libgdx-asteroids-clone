@@ -3,6 +3,7 @@ package dev.manolovn.burger
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import dev.manolovn.burger.screen.InGameScreen
+import dev.manolovn.burger.screen.MenuScreen
 
 class AsteroidsGame : Game() {
 
@@ -11,7 +12,7 @@ class AsteroidsGame : Game() {
     override fun create() {
         batch = SpriteBatch()
 
-        restart()
+        setScreen(MenuScreen(this))
     }
 
     fun restart() {

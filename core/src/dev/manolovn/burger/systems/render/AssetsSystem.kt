@@ -23,6 +23,7 @@ class AssetsSystem : PassiveSystem() {
     lateinit var bg: Sprite
     lateinit var spaceship: Sprite
     lateinit var bullet: Sprite
+    lateinit var logo: Sprite
 
     lateinit var explosion: Texture
     lateinit var powerups: Texture
@@ -38,6 +39,7 @@ class AssetsSystem : PassiveSystem() {
         gemsTexture = loadSprite("gems.png")
         spaceship = loadSprite("spaceship.png")
         bullet = loadSprite("bullet.png")
+        logo = loadSprite("logo.png")
 
         explosion = loadTexture("exp.png")
         powerups = loadTexture("powerups.png")
