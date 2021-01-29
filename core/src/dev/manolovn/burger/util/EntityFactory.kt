@@ -81,7 +81,10 @@ object EntityFactory {
 
     fun explosion(world: World, pos: Pos): Entity =
         EntityBuilder(world)
-            .with(pos, Anim(id = "explosion"))
+            .with(pos,
+                //Anim(id = "explosion"),
+                Shader(vertex = "shader/wave/vertex.glsl", fragment = "shader/wave/fragment.glsl")
+            )
             .build()
 
     fun powerUp(world: World): Entity {

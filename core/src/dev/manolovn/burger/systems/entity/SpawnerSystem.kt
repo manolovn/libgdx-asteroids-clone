@@ -28,7 +28,7 @@ class SpawnerSystem : PassiveSystem() {
     }
 
     private fun initAsteroids() {
-        for (i in 0..40) {
+        for (i in 0..10) {
             buildAsteroidEntity()
         }
     }

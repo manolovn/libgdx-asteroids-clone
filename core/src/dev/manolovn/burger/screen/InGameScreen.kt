@@ -51,12 +51,14 @@ class InGameScreen(
                     KeyboardSystem(),
                     TouchSystem(),
                     // rendering
+
                     CameraSystem(game.batch),
                     CameraShakeSystem(),
                     MapRenderingSystem(game.batch),
                     RenderingSystem(game.batch),
                     AnimRenderingSystem(game.batch),
-                    CollisionDebugRenderSystem(),
+                    //CollisionDebugRenderSystem(),
+                    ShaderRenderingSystem(game.batch),
                     GameSystem(game, game.batch),
                 )
                 .build()

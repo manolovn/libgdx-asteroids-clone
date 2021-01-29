@@ -20,14 +20,21 @@ class MenuSystem(
 
     private lateinit var assetSystem: AssetsSystem
 
-    override fun begin() {
-        val shimmerProgram = ShaderProgram(
-            Gdx.files.internal("shader/shimmer.vertex.glsl"),
-            Gdx.files.internal("shader/shimmer.fragment.glsl")
-        )
+    private var age = 0f
+    private var shimmerProgram: ShaderProgram = ShaderProgram(
+        Gdx.files.internal("shader/shimmer.vertex.glsl"),
+        Gdx.files.internal("shader/shimmer.fragment.glsl")
+    )
+
+    init {
         if (!shimmerProgram.isCompiled) throw RuntimeException("Compilation failed." + shimmerProgram.log)
         batch = SpriteBatch(1000, shimmerProgram)
+    }
+
+    override fun begin() {
+        age += world.delta
         batch.begin()
+        shimmerProgram.setUniformf("iGlobalTime", age)
     }
 
     override fun processSystem() {
@@ -41,13 +48,12 @@ class MenuSystem(
     private fun subtitle(s: String) {
         with(assetSystem.fontSmall) {
             val glyphLayout = GlyphLayout(this, s)
-            draw(batch, s, (AsteroidsGame.W - glyphLayout.width) / 2, 50f)
+            draw(batch, s, (W - glyphLayout.width) / 2, 50f)
         }
     }
 
     private fun waitStart() {
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-            // restart game
             game.restart()
             return
         }
